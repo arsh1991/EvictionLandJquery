@@ -1,0 +1,133 @@
+<html>
+  <meta charset="utf-8">
+
+  <head>
+    <link rel="stylesheet" href="/stylesheets/bargraph.css">
+    <link rel="stylesheet" href="/stylesheets/rankings.css">
+    <script src="/javascripts/domModify.js"></script>
+  </head>
+
+  <body onload=headerModification()>
+    <div class="header"></div>
+    <div>
+      <% include header %>
+        <form class="rankingForm" method="get" action="/rankings/state">
+          <div class="heading">Please Select a region to display Eviction Rankings</div>
+          <select name="selectedState" class="stateDropdown">
+            <%
+            var options = states;
+            for ( var i = 0; i < options.length; i++ )
+            {
+            %>
+            <option value="<%= options[ i ].state %>" <%= selected == options[i].state?"selected":"" %>>
+                <%= options[ i ].state %>
+            </option>
+            <%
+            }
+            %>
+        </select>
+
+          <button class="okButton" type="submit">Go</button>
+        </form>
+
+    </div>
+
+    <div class="rankingheading"> Top <span id="numbers"></span>results with Eviction Rate in Descending order:</div>
+    <div id="graphic" class="graphic"></div>
+    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script>
+      //set up svg using margin conventions - we'll need plenty of room on the left for labels
+      var data;
+      data = <%- JSON.stringify(data) %>;
+      var margin = {
+        top: 20,
+        right: 25,
+        bottom: 5,
+        left: 60
+      };
+
+      var width = 960 - margin.left - margin.right,
+        height = 500 - margin.top - margin.bottom;
+
+      var svg = d3.select("#graphic").append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+      var x = d3.scale.linear()
+        .range([0, width])
+        .domain([0, d3.max(data, function(d) {
+          return d.case_numbers;
+        })]);
+
+      var y = d3.scale.ordinal()
+        .rangeRoundBands([height, 0], .1)
+        .domain(data.map(function(d) {
+          return d.county;
+        }));
+
+      var bars = svg.selectAll(".bar")
+        .data(data)
+        .enter()
+        .append("g")
+
+      var tooltip = d3.select("#graphic")
+        .append("div")
+        .attr("class", "mytooltip")
+        .text("custom");
+
+      //append rects
+      bars.append("rect")
+        .attr("class", "bar")
+        .attr("y", function(d) {
+          return y(d.county);
+        })
+        .attr("height", y.rangeBand())
+        .attr("x", 0)
+        .attr("width", function(d) {
+          return x(d.case_numbers);
+        })
+        .on("mouseover", function() {
+          return tooltip.style("visibility", "visible");
+        })
+        .on("mousemove", function(d) {
+          return tooltip.style("top",
+              (d3.event.pageY - 10) + "px").style("left", (d3.event.pageX + 10) + "px")
+            .text("Rank: " + d.rank + "\nCounty: " + d.county + "\nCase No.: " + d.case_numbers);
+        })
+        .on("mouseout", function() {
+          return tooltip.style("visibility", "hidden");
+        });
+
+      //add a value label to the right of each bar
+      bars.append("text")
+        .attr("class", "ranking_name")
+        //y position of the label is halfway down the bar
+        .attr("y", function(d) {
+          return y(d.county) + y.rangeBand() / 2 + 4;
+        })
+        //x position is 3 pixels to the right of the bar
+        .attr("x", function(d) {
+          return 5;
+        })
+        .text(function(d) {
+          return d.county + "   " + d.case_numbers;
+        });
+
+      bars.append("text")
+        .attr("class", "ranks")
+        //y position of the label is halfway down the bar
+        .attr("y", function(d) {
+          return y(d.county) + y.rangeBand() / 2 + 4;
+        })
+        //x position is 3 pixels to the right of the bar
+        .attr("x", function(d) {
+          return -30;
+        })
+        .text(function(d) {
+          return d.rank;
+        });
+    </script>
+    <% include footer %>
+  </body>
