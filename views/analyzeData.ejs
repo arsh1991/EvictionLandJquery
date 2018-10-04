@@ -6,32 +6,29 @@
     <script src="/external/jquery/jquery.js"></script>
     <script src="/javascripts/jquery-ui.js"></script>
     <script>
-        $( function() {
-            $( "#sortable" ).sortable();
-            $( "#sortable" ).disableSelection();
-        } );
+        $(function () {
+            $("#draggableStates").sortable();
+            $("#draggableStates").disableSelection();
+        });
     </script>
 </head>
-<body onload="analyzedata()">
+<body>
 <div class="header">
     <% include header %>
 </div>
 
 <div class="mainBody">
-
+    <span class="stateTitle">States</span>
     <ul id="draggableStates">
-        <li class="ui-state-default">1</li>
-        <li class="ui-state-default">2</li>
-        <li class="ui-state-default">3</li>
-        <li class="ui-state-default">4</li>
-        <li class="ui-state-default">5</li>
-        <li class="ui-state-default">6</li>
-        <li class="ui-state-default">7</li>
-        <li class="ui-state-default">8</li>
-        <li class="ui-state-default">9</li>
-        <li class="ui-state-default">10</li>
-        <li class="ui-state-default">11</li>
-        <li class="ui-state-default">12</li>
+        <%
+        var options = states;
+        for ( var i = 0; i < options.length; i++ )
+        {
+        %>
+        <li class="stateNames"> <%= options[i].state %></li>
+        <%
+        }
+        %>
     </ul>
 </div>
 <% include footer %>
