@@ -1,0 +1,39 @@
+<html>
+<meta charset="utf-8">
+
+<head>
+    <link rel="stylesheet" href="/stylesheets/analyzeData.css">
+    <script src="/external/jquery/jquery.js"></script>
+    <script src="/javascripts/jquery-ui.js"></script>
+    <script>
+        $( function() {
+            $( "#sortable" ).sortable();
+            $( "#sortable" ).disableSelection();
+        } );
+    </script>
+</head>
+<body onload="analyzedata()">
+<div class="header">
+    <% include header %>
+</div>
+
+<div class="mainBody">
+
+    <ul id="draggableStates">
+        <li class="ui-state-default">1</li>
+        <li class="ui-state-default">2</li>
+        <li class="ui-state-default">3</li>
+        <li class="ui-state-default">4</li>
+        <li class="ui-state-default">5</li>
+        <li class="ui-state-default">6</li>
+        <li class="ui-state-default">7</li>
+        <li class="ui-state-default">8</li>
+        <li class="ui-state-default">9</li>
+        <li class="ui-state-default">10</li>
+        <li class="ui-state-default">11</li>
+        <li class="ui-state-default">12</li>
+    </ul>
+</div>
+<% include footer %>
+</body>
+</html>
