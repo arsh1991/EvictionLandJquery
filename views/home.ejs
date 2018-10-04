@@ -10,26 +10,8 @@
   <body onload=headerModification()>
     <% include header %>
       <div class="mainBody">
-        <canvas id="myCanvas"></canvas>
-        <canvas id="Canvas_pattern" class="hidden"></canvas>
-        <div id="text-measure" class="hidden"></div>
-        <script>
-            var drawingCanvas, ctx;
-            var timeStep = (1/30);
-            var time = 0;
-            var frame = 0;
-
-            var measureDiv = document.getElementById('text-measure');
-            var letters = [];
-            initDrawingCanvas();
-            processText();
-            requestAnimationFrame(loop);
-        </script>
         <div class="box">
-          <div class="boxInner">
-            <div class="mainImage"></div>
-            <div class="backImage"></div>
-          </div>
+          <div class="mainImage"></div>
         </div>
       </div>
       <% include footer %>

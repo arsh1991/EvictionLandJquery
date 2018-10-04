@@ -33,7 +33,6 @@ html, body {
 
 .box {
   background-color: transparent;
-  border: 1px solid #f1f1f1;
   perspective: 1000px;
   height: 80%;
 }
@@ -45,10 +44,6 @@ html, body {
   text-align: center;
   transition: transform 1s;
   transform-style: preserve-3d;
-}
-
-.box:hover .boxInner {
-  transform: rotateY(180deg);
 }
 
 body {
