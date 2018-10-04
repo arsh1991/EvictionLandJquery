@@ -9,6 +9,17 @@
         $(function () {
             $("#draggableStates").sortable();
             $("#draggableStates").disableSelection();
+            $("#draggableStates li").draggable();
+            $( "#droppable" ).droppable({
+                drop: function( event, ui ) {
+                    console.log(event)
+                    console.log(ui.draggable[0].innerText)
+                    $( this )
+                        .addClass( "ui-state-highlight" )
+                        .find( "p" )
+                        .html( ui.draggable[0].innerText );
+                }
+            });
         });
     </script>
 </head>
@@ -25,11 +36,15 @@
         for ( var i = 0; i < options.length; i++ )
         {
         %>
-        <li class="stateNames"> <%= options[i].state %></li>
+        <div class="stateNames ui-widget-content"> <%= options[i].state %></div>
         <%
         }
         %>
     </ul>
+
+    <div id="droppable" class="ui-widget-header">
+        <p>Drop here</p>
+    </div>
 </div>
 <% include footer %>
 </body>

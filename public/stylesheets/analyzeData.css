@@ -11,7 +11,7 @@
     background-color: white;
 }
 
-#draggableStates li {
+#draggableStates div {
     margin: 10px;
     padding: 10px;
     float: left;
@@ -22,9 +22,19 @@
     text-align: center;
     background-color: #e24000;
     color: white;
+    z-index: 10;
 }
 
 .stateTitle{
     margin-left: 20px;
     font-size: 30px;
+}
+
+
+#droppable{
+    width: 200px;
+    height: 200px;
+    border: 1px solid;
+    background-color: transparent;
+    z-index: 1;
 }
