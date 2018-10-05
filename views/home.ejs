@@ -13,10 +13,13 @@
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script>
       $( function() {
-          $( "#accordion" ).accordion();
+          $( "#accordion" ).accordion({
+              collapsible: true,
+              icons: { "activeHeader": "ui-icon-minus" }
+          });
       } );
       $( function() {
-          $( ".widget input[type=submit], .widget a, .widget button" ).button();
+          $( ".widget input[type=submit], .widget a" ).button();
       } );
   </script>
 
