@@ -38,3 +38,20 @@
     padding: 20px;
     font-size: 25px;
 }
+
+.stateData {
+    border: 1px solid;
+    margin: 20px;
+    padding: 20px;
+    width: 600px;
+    font-size: 20px;
+}
+
+span.stateDataCounty {
+    min-width: 404px;
+    display: inline-block;
+}
+
+.selectedTitle{
+    color: #9e0505;
+}
