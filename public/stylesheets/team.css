@@ -48,3 +48,11 @@
 .cont {
   background-color: white;
 }
+
+.photo3 {
+  background-image: url('/images/divya.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-blend-mode: color-dodge;
+}
