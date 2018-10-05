@@ -13,4 +13,12 @@ router.get('/index',mainController.index);
 
 router.get('/ourteam', mainController.ourteam);
 
+router.get('/shashank', mainController.shashank);
+
+router.get('/arshdeep', mainController.arshdeep);
+
+router.get('/divya', mainController.divya);
+
+router.get('/pavana', mainController.pavana);
+
 module.exports = router;

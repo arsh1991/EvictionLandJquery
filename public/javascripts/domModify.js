@@ -17,7 +17,7 @@ function headerModification(){
         ulist.removeChild(ulist.childNodes[4]);
     }
 
-    if(link === 'rankings' || link==='ourteam') {
+    if(link === 'rankings' || link === 'ourteam') {
         let ulist = document.getElementById('navList');
 
         ulist.removeChild(ulist.childNodes[5]);
