@@ -3,9 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <title>Login to EvictionLand</title>
+
   <link rel="stylesheet" href="/stylesheets/home.css">
   <script src="/javascripts/domModify.js"></script>
-  <script src=""></script>
+  <link rel="stylesheet" href="/stylesheets/jquery-ui.css">
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/ui-darkness/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+      $( function() {
+          $( "#accordion" ).accordion();
+      } );
+  </script>
+
 </head>
 
 <body onload=headerModification()>
@@ -26,6 +37,24 @@
       processText();
       requestAnimationFrame(loop);
   </script>
+
+  <div id="accordion" class="ui-accordion">
+    <h1>MAP & DATA</h1>
+    <div>
+      <h4>
+        Learn about american eviction rates by interating with the map
+      </h4>
+      <div class="retrieveButton">
+        <a href="/map">Go to Maps</a>
+      </div>
+    </div>
+    <h4>EVICTION RANKINGS</h4>
+    <div> <h4>See which cities rank the highest in eviction</h4>
+      <div class="retrieveButton">
+        <a href="/rankings">Retrieve Data</a>
+      </div></div>
+  </div>
+
   <div class="box">
     <div class="boxInner">
       <div class="mainImage"></div>
