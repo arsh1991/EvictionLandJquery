@@ -15,6 +15,12 @@
       $( function() {
           $( "#accordion" ).accordion();
       } );
+      $( function() {
+          $( ".widget input[type=submit], .widget a, .widget button" ).button();
+          $( "button, input, a" ).click( function( event ) {
+              event.preventDefault();
+          } );
+      } );
   </script>
 
 </head>
@@ -39,18 +45,25 @@
   </script>
 
   <div id="accordion" class="ui-accordion">
+    <h1> ABOUT EVICTIONLAND </h1>
+    <div>
+      <h3> Evictionland is a data dashboard designed to view at evictions over time,
+        map evictions in the United States,
+        compare the eviction rates of different neighborhoods,
+        cities, or states </h3>
+    </div>
     <h1>MAP & DATA</h1>
     <div>
-      <h4>
+      <h3>
         Learn about american eviction rates by interating with the map
-      </h4>
-      <div class="retrieveButton">
+      </h3>
+      <div class="widget">
         <a href="/map">Go to Maps</a>
       </div>
     </div>
-    <h4>EVICTION RANKINGS</h4>
-    <div> <h4>See which cities rank the highest in eviction</h4>
-      <div class="retrieveButton">
+    <h1>EVICTION RANKINGS</h1>
+    <div> <h3>See which cities rank the highest in eviction</h3>
+      <div class="widget">
         <a href="/rankings">Retrieve Data</a>
       </div></div>
   </div>

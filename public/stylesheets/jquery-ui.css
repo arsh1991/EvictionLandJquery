@@ -177,18 +177,25 @@
 	-ms-touch-action: none;
 	touch-action: none;
 }
+
 .ui-accordion .ui-accordion-header {
 	display: block;
 	cursor: pointer;
-	position: relative;
-	margin: 2px 0 0 0;
-	padding: .5em .5em .5em .7em;
+	position: absolute;
+    height: 20px;
+    width: 80%;
+	margin: 50px auto;
+	padding: 20px;
 	font-size: 100%;
+    text-indent: 20px;
+    collabsible: true;
 }
 .ui-accordion .ui-accordion-content {
-	padding: 1em 2.2em;
-	border-top: 0;
+	padding: 20px;
+	border-top: 2px;
 	overflow: auto;
+    width: 76%;
+    text-indent: 20px;
 }
 .ui-autocomplete {
 	position: absolute;
