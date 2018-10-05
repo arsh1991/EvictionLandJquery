@@ -11,4 +11,6 @@ router.get('/home', mainController.home);
 
 router.get('/index',mainController.index);
 
+router.get('/ourteam', mainController.ourteam);
+
 module.exports = router;

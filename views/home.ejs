@@ -8,17 +8,19 @@
     <script src="/javascripts/domModify.js"></script>
     <link rel="stylesheet" href="/stylesheets/jquery-ui.css">
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/ui-darkness/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
       $(function() {
         $("#accordion").accordion({
-          heightStyle: "content"
+          collapsible: true,
+          icons: {
+            "activeHeader": "ui-icon-minus"
+          }
         });
       });
       $(function() {
-        $(".widget input[type=submit], .widget a, .widget button").button();
+        $(".widget input[type=submit], .widget a").button();
       });
     </script>
 

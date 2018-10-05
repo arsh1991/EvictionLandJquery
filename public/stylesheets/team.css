@@ -1,0 +1,44 @@
+.team {
+  margin-top: 15px;
+  height: 500px;
+}
+
+.photo1, .photo2, .photo3, .photo4 {
+  width: 19%;
+  height: 200px;
+  border: 1px solid;
+  float: left;
+  margin-right: 10px;
+}
+
+.photo1 {
+  background-image: url('/images/shashank.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-blend-mode: color-dodge;
+}
+
+.about {
+  width: 70%;
+  margin-left: 22%;
+  border: 1px solid;
+}
+
+.skills, .contact {
+  width: 70%;
+  margin-left: 22%;
+  margin-top: 10px;
+  border: 1px solid;
+  background-color: white;
+  padding: 10px;
+}
+
+
+.tabs {
+  display: inline;
+}
+
+.cont {
+  background-color: white;
+}
