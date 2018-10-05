@@ -19,6 +19,14 @@
   background-blend-mode: color-dodge;
 }
 
+.photo4 {
+  background-image: url('/images/pavana.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-blend-mode: color-dodge;
+}
+
 .about {
   width: 70%;
   margin-left: 22%;
