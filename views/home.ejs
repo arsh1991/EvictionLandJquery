@@ -1,84 +1,66 @@
 <html lang="en-us">
 
-<head>
-  <meta charset="UTF-8">
-  <title>Login to EvictionLand</title>
+  <head>
+    <meta charset="UTF-8">
+    <title>Login to EvictionLand</title>
 
-  <link rel="stylesheet" href="/stylesheets/home.css">
-  <script src="/javascripts/domModify.js"></script>
-  <link rel="stylesheet" href="/stylesheets/jquery-ui.css">
-  <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/ui-darkness/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script>
-      $( function() {
-          $( "#accordion" ).accordion();
-      } );
-      $( function() {
-          $( ".widget input[type=submit], .widget a, .widget button" ).button();
-      } );
-  </script>
+    <link rel="stylesheet" href="/stylesheets/home.css">
+    <script src="/javascripts/domModify.js"></script>
+    <link rel="stylesheet" href="/stylesheets/jquery-ui.css">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/ui-darkness/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+      $(function() {
+        $("#accordion").accordion({
+          heightStyle: "content"
+        });
+      });
+      $(function() {
+        $(".widget input[type=submit], .widget a, .widget button").button();
+      });
+    </script>
 
-</head>
+  </head>
 
-<body onload=headerModification()>
-<% include header %>
-<div class="mainBody">
-  <canvas id="myCanvas"></canvas>
-  <canvas id="Canvas_pattern" class="hidden"></canvas>
-  <div id="text-measure" class="hidden"></div>
-  <script>
-      var drawingCanvas, ctx;
-      var timeStep = (1/30);
-      var time = 0;
-      var frame = 0;
+  <body onload=headerModification()>
+    <% include header %>
+      <div class="mainBody">
+        <div class="box">
+          <div class="mainImage">
 
-      var measureDiv = document.getElementById('text-measure');
-      var letters = [];
-      initDrawingCanvas();
-      processText();
-      requestAnimationFrame(loop);
-  </script>
+            <div id="accordion" class="ui-accordion">
+              <h3 class="lab"> ABOUT EVICTIONLAND </h3>
+              <div>
+                <p>Evictionland is a data dashboard designed to view at evictions over time, map evictions in the United States, compare the eviction rates of different neighborhoods, cities, or states </p>
+              </div>
+              <h3>MAP & DATA</h3>
+              <div>
+                <p>Learn about american eviction rates by interating with the map</p>
+                <div class="widget">
+                  <a href="/map">Go to Maps</a>
+                </div>
+              </div>
+              <h3>EVICTION RANKINGS</h3>
+              <div>
+                <h3>See which cities rank the highest in eviction</h3>
+                <div class="widget">
+                  <a href="/rankings">Retrieve Data</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-  <div id="accordion" class="ui-accordion">
-    <h1> ABOUT EVICTIONLAND </h1>
-    <div>
-      <h3> Evictionland is a data dashboard designed to view at evictions over time,
-        map evictions in the United States,
-        compare the eviction rates of different neighborhoods,
-        cities, or states </h3>
-    </div>
-    <h1>MAP & DATA</h1>
-    <div>
-      <h3>
-        Learn about american eviction rates by interating with the map
-      </h3>
-      <div class="widget">
-        <a href="/map">Go to Maps</a>
+        <div class="retrieveText">
+          Discover out how numerous removals happen in your community.
+        </div>
+        <div class="retrieveButton">
+          <a href="/analyzeData">Retrieve Data</a>
+        </div>
+
+
       </div>
-    </div>
-    <h1>EVICTION RANKINGS</h1>
-    <div> <h3>See which cities rank the highest in eviction</h3>
-      <div class="widget">
-        <a href="/rankings">Retrieve Data</a>
-      </div></div>
-  </div>
-
-  <div class="box">
-    <div class="boxInner">
-      <div class="mainImage"></div>
-      <div class="backImage"></div>
-    </div>
-  </div>
-  <div class="retrieveText">
-    Discover out how numerous removals happen in your community.
-  </div>
-  <div class="retrieveButton">
-    <a href="/analyzeData">Retrieve Data</a>
-  </div>
-
-
-</div>
-<% include footer %>
-</body>
+      <% include footer %>
+  </body>

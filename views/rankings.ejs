@@ -4,6 +4,7 @@
   <head>
     <link rel="stylesheet" href="/stylesheets/bargraph.css">
     <link rel="stylesheet" href="/stylesheets/rankings.css">
+    <link href="/stylesheets/jquery-ui.css" rel="stylesheet">
     <script src="/javascripts/domModify.js"></script>
   </head>
 
@@ -13,7 +14,9 @@
       <% include header %>
         <form class="rankingForm" method="get" action="/rankings/state">
           <div class="heading">Please Select a region to display Eviction Rankings</div>
-          <select name="selectedState" class="stateDropdown">
+
+          <!-- Jquery Dropdown -->
+          <select id="selectmenu">
             <%
             var options = states;
             for ( var i = 0; i < options.length; i++ )
@@ -25,7 +28,9 @@
             <%
             }
             %>
-        </select>
+          </select>
+
+          <!---------------------->
 
           <button class="okButton" type="submit">Go</button>
         </form>
@@ -129,5 +134,8 @@
           return d.rank;
         });
     </script>
+
+    <script src="/external/jquery/jquery.js"></script>
+    <script src="/javascripts/jquery-ui.js"></script>
     <% include footer %>
   </body>
