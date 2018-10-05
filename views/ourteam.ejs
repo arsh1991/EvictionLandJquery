@@ -1,145 +1,34 @@
-<html>
-  <meta charset="utf-8">
+<!DOCTYPE html>
+<html lang="en-US">
 
   <head>
-    <link href="/stylesheets/team.css" rel="stylesheet">
-    <link href="/stylesheets/jquery-ui.css" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/stylesheets/jquery-ui.css">
     <script src="/javascripts/domModify.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
     <script>
-      $(function() {
-        $("#tabs").tabs();
-      });
-    </script>
+      $(init);
 
+      function init() {
+        $("#tabs").tabs();
+      }
+    </script>
+    <title>Our Team</title>
   </head>
 
-  <body onload=headerModification()>
+  <body>
     <% include header %>
-      <div id="tabs" class="team">
+      <div id="tabs">
         <ul>
-          <li><a href="#tabs-1">Shashank</a></li>
-          <li><a href="#tabs-2">Arshdeep</a></li>
-          <li><a href="#tabs-3">Divya</a></li>
-          <li><a href="#tabs-4">Pavana</a></li>
+          <li><a href="/shashank">shashank</a></li>
+          <li><a href="/arshdeep">Arshdeep</a></li>
+          <li><a href="/divya">Divya</a></li>
+          <li><a href="/pavana">Pavana</a></li>
         </ul>
-        <div id="tabs-1" class="tabs">
-          <div class="photo1"></div>
-          <div class="about">Proin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa et lorem. Mauris dapibus lacus auctor risus. Aenean tempor
-            ullamcorper leo. Vivamus sed magna quis ligula eleifend adipiscing. Duis orci. Aliquam sodales tortor vitae ipsum. Aliquam nulla. Duis aliquam molestie erat. Ut et mauris vel pede varius sollicitudin. Sed ut dolor nec orci tincidunt interdum.
-            Phasellus ipsum. Nunc tristique tempus lectus.
-          </div>
-          <div class="skills">
-            <ol>
-              <li>Javascript</li>
-              <br>
-              <li>Java</li>
-              <br>
-              <li>React JS</li>
-              <br>
-            </ol>
-          </div>
-
-          <div class="contact">
-            <p>Contact Details:</p>
-            <ul class="cont">
-              <li>Email: Shashank.singh@sjsu.edu</li>
-              <br>
-              <li>Phone: 669-220-8812</li>
-              <br>
-            </ul>
-          </div>
-
-        </div>
-        <div id="tabs-2">
-          <div class="photo2"></div>
-          <div class="about">Proin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa et lorem. Mauris dapibus lacus auctor risus. Aenean tempor
-            ullamcorper leo. Vivamus sed magna quis ligula eleifend adipiscing. Duis orci. Aliquam sodales tortor vitae ipsum. Aliquam nulla. Duis aliquam molestie erat. Ut et mauris vel pede varius sollicitudin. Sed ut dolor nec orci tincidunt interdum.
-            Phasellus ipsum. Nunc tristique tempus lectus.
-          </div>
-          <div class="skills">
-            <ol>
-              <li>Coffee</li>
-              <br>
-              <li>Tea</li>
-              <br>
-              <li>Milk</li>
-              <br>
-            </ol>
-          </div>
-
-          <div class="contact">
-            <p>Contact Details:</p>
-            <ul class="cont">
-              <li>Email: Shashank.singh@sjsu.edu</li>
-              <br>
-              <li>Phone: 669-220-8812</li>
-              <br>
-            </ul>
-          </div>
-
-        </div>
-        <div id="tabs-3">
-          <div class="photo3"></div>
-          <div class="about">Proin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa et lorem. Mauris dapibus lacus auctor risus. Aenean tempor
-            ullamcorper leo. Vivamus sed magna quis ligula eleifend adipiscing. Duis orci. Aliquam sodales tortor vitae ipsum. Aliquam nulla. Duis aliquam molestie erat. Ut et mauris vel pede varius sollicitudin. Sed ut dolor nec orci tincidunt interdum.
-            Phasellus ipsum. Nunc tristique tempus lectus.
-          </div>
-          <div class="skills">
-            <ol>
-              <li>Coffee</li>
-              <br>
-              <li>Tea</li>
-              <br>
-              <li>Milk</li>
-              <br>
-            </ol>
-          </div>
-
-          <div class="contact">
-            <p>Contact Details:</p>
-            <ul class="cont">
-              <li>Email: Shashank.singh@sjsu.edu</li>
-              <br>
-              <li>Phone: 669-220-8812</li>
-              <br>
-            </ul>
-          </div>
-
-        </div>
-        <div id="tabs-4">
-          <div class="photo4"></div>
-          <div class="about">Software Engineering graduate student at San Jose State University. Specializing in
-            Cloud computing and Virtualization, and Data Science.
-          </div>
-          <div class="skills">
-            <ol>
-              <li>Python, Java, NodeJS</li>
-              <br>
-              <li>HTML, CSS, JavaScript, JQuery</li>
-              <br>
-              <li>Docker</li>
-              <br>
-              <li>AWS</li>
-              <br>
-            </ol>
-          </div>
-          <div class="contact">
-            <p>Contact Details:</p>
-            <ul class="cont">
-              <li>Email: pavana.srinivasadeshikaachar@sjsu.edu</li>
-              <br>
-              <li>Phone: 408-598-6515</li>
-              <br>
-            </ul>
-          </div>
-        </div>
       </div>
 
-      <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-      <script src="/external/jquery/jquery.js"></script>
-      <script src="/javascripts/jquery-ui.js"></script>
       <% include footer %>
   </body>
+
+</html>
