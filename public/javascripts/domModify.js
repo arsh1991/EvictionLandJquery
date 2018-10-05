@@ -136,7 +136,3 @@ function draw() {
         x += letter.width + 5;
     }
 }
-
-function abc() {
-    return "5";
-}

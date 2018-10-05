@@ -5,38 +5,100 @@
     <link rel="stylesheet" href="/stylesheets/bargraph.css">
     <link rel="stylesheet" href="/stylesheets/rankings.css">
     <link href="/stylesheets/jquery-ui.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
     <script src="/javascripts/domModify.js"></script>
+
+    <script>
+      $(function() {
+        var availableTags = [
+          "Maryland",
+          "New York",
+          "Michigan",
+          "Texas",
+          "Georgia",
+          "New Jersey",
+          "Nevada",
+          "District of Columbia",
+          "Ohio",
+          "Virginia",
+          "Pennsylvania",
+          "Delaware",
+          "Missouri",
+          "Colorado",
+          "Massachusetts",
+          "Nebraska",
+          "Utah",
+          "Hawaii",
+          "Alaska",
+          "Arkansas",
+          "New Mexico",
+          "Maine",
+          "North Dakota",
+          "Wyoming",
+          "Vermont",
+          "South Dakota"
+        ];
+
+        $("#tags").autocomplete({
+          source: availableTags
+        });
+
+      });
+    </script>
   </head>
 
   <body onload=headerModification()>
     <div class="header"></div>
     <div>
       <% include header %>
-        <form class="rankingForm" method="get" action="/rankings/state">
-          <div class="heading">Please Select a region to display Eviction Rankings</div>
 
-          <!-- Jquery Dropdown -->
-          <select id="selectmenu">
-            <%
-            var options = states;
-            for ( var i = 0; i < options.length; i++ )
-            {
-            %>
-            <option value="<%= options[ i ].state %>" <%= selected == options[i].state?"selected":"" %>>
-                <%= options[ i ].state %>
-            </option>
-            <%
-            }
-            %>
-          </select>
 
-          <!---------------------->
+        <div class="forms">
+          <div class="form1">
+            <form class="rankingForm" method="get" action="/rankings/state">
+              <div class="heading">Please Select a region to display Eviction Rankings</div>
 
-          <button class="okButton" type="submit">Go</button>
-        </form>
+              <!-- Jquery Dropdown -->
+
+              <select name="selectedState" id="selectedState">
+              <%
+              var options = states;
+              for ( var i = 0; i < options.length; i++ )
+              {
+              %>
+              <option value="<%= options[ i ].state %>" <%= selected == options[i].state?"selected":"" %>>
+                  <%= options[ i ].state %>
+              </option>
+              <%
+              }
+              %>
+            </select>
+
+              <!---------------------->
+
+              <button class="okButton" type="submit">Submit</button>
+            </form>
+          </div>
+
+          <div class="form2">
+            <form class="rankingForm1" method="get" action="/rankings/state">
+              <div class="heading">Please search a region to display Eviction Rankings</div>
+
+              <div class="ui-widget">
+                <label for="tags">Search: </label>
+                <input id="tags" name="selectedState">
+                <button class="okButton" type="submit">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
 
     </div>
-
+    <br>
+    <br>
     <div class="rankingheading"> Top <span id="numbers"></span>results with Eviction Rate in Descending order:</div>
     <div id="graphic" class="graphic"></div>
     <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
@@ -134,7 +196,6 @@
           return d.rank;
         });
     </script>
-
     <script src="/external/jquery/jquery.js"></script>
     <script src="/javascripts/jquery-ui.js"></script>
     <% include footer %>
