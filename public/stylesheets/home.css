@@ -13,41 +13,14 @@ html, body {
     position: absolute;
     width: 100%;
     height: 100%;
-    backface-visibility: hidden;
-}
-
-.backImage {
-    background-image: url("/images/backImage.jpg");
-    height: 80%;
-    background-repeat: no-repeat;
-    background-size: cover;
-    min-width: 100%;
-
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-
-    transform: rotateY(180deg);
 }
 
 .box {
     background-color: transparent;
     border: 1px solid #f1f1f1;
     perspective: 1000px;
-    height: 30%;
-    width: 95%;
-    /* padding: 30px; */
-    margin: 25px;
-}
-
-.boxInner {
-    position: relative;
+    height: 70%;
     width: 100%;
-    height: 100%;
-    text-align: center;
-    transition: transform 1s;
-    transform-style: preserve-3d;
 }
 
 .box:hover .boxInner {
@@ -80,26 +53,50 @@ body {
 }
 
 .retrieveText {
-    margin-top: 50px;
-    font-size: 30px;
+    margin-top: 15px;
+    font-size: 24px;
     text-align: center;
     color: white;
 }
 
-
 .retrieveButton {
-    font-size: 25px;
+    font-size: 20px;
     background-color: #e24000;
-    width: 150px;
+    width: 130px;
     padding: 10px;
-    border-radius: 12px;
+    border-radius: 7px;
     text-align: center;
     margin: auto;
     color: white;
-    margin-bottom: 150px;
+    margin-bottom: 15px;
 }
 
 .retrieveButton a {
     color: white;
     text-decoration: none;
+}
+
+#accordion {
+  width: 50%;
+  margin-left: 20px;
+  margin-top: 20px;
+  opacity: 0.8;
+}
+
+.retreive {
+  width: 45%;
+  float: left;
+}
+
+.accordionHolder {
+  display: inline;
+  min-height: 400px;
+}
+
+.lab {
+  width: 100%;
+}
+
+.ui-accordion {
+  padding: 0px;
 }
