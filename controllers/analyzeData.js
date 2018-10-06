@@ -15,6 +15,7 @@ module.exports.analyzedata = function(req,res) {
 
 module.exports.countydata = function(req,res) {
     const selectedState = req.query.selectedState;
+
     var dataJsonArray = xlsx.utils.sheet_to_json(data);
 
     // filter data based on selected state
@@ -23,7 +24,7 @@ module.exports.countydata = function(req,res) {
     });
 
     var statesJsonArray = xlsx.utils.sheet_to_json(states);
-
+    console.log(rankingsForState.slice(0,10))
 
     res.send({status:"ok",
         'data':rankingsForState.slice(0,10),

@@ -6,7 +6,10 @@
   padding: 5px;
   font-weight: bold;
 }
-
+html, body {
+  height: 100%;
+  margin: 0;
+}
 #map {
   width: 100%;
   height: 500px;

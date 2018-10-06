@@ -58,32 +58,6 @@
         <div class="forms">
           <div class="form1">
             <form class="rankingForm" method="get" action="/rankings/state">
-              <div class="heading">Please Select a region to display Eviction Rankings</div>
-
-              <!-- Jquery Dropdown -->
-
-              <select name="selectedState" id="selectedState">
-              <%
-              var options = states;
-              for ( var i = 0; i < options.length; i++ )
-              {
-              %>
-              <option value="<%= options[ i ].state %>" <%= selected == options[i].state?"selected":"" %>>
-                  <%= options[ i ].state %>
-              </option>
-              <%
-              }
-              %>
-            </select>
-
-              <!---------------------->
-
-              <button class="okButton" type="submit">Submit</button>
-            </form>
-          </div>
-
-          <div class="form2">
-            <form class="rankingForm1" method="get" action="/rankings/state">
               <div class="heading">Please search a region to display Eviction Rankings</div>
 
               <div class="ui-widget">

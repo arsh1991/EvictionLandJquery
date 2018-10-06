@@ -5,7 +5,7 @@ function headerModification(){
     const pathArray = path.split('/');
 
     const link = pathArray[pathArray.length-1];
-    console.log(link);
+
     if(link === 'home') {
         let ulist = document.getElementById('navList');
 
@@ -15,27 +15,58 @@ function headerModification(){
         ulist.removeChild(ulist.childNodes[4]);
         ulist.removeChild(ulist.childNodes[4]);
         ulist.removeChild(ulist.childNodes[4]);
+        ulist.removeChild(ulist.childNodes[4]);
+        ulist.removeChild(ulist.childNodes[4]);
     }
 
-    if(link === 'rankings' || path.contains('ourteam')) {
+    if(link === 'map' || link === 'analyzeData') {
         let ulist = document.getElementById('navList');
 
-        ulist.removeChild(ulist.childNodes[5]);
         ulist.removeChild(ulist.childNodes[6]);
-        ulist.removeChild(ulist.childNodes[7]);
+        ulist.removeChild(ulist.childNodes[6]);
+        ulist.removeChild(ulist.childNodes[6]);
+        ulist.removeChild(ulist.childNodes[6]);
+        ulist.removeChild(ulist.childNodes[6]);
+        ulist.removeChild(ulist.childNodes[6]);
     }
 
-    if(link === 'login' || link === '' || link === 'logout' || link ==="handleSignin" || link === "handleSignup") {
+    if(link === 'rankings' || link.includes("state")) {
+        let ulist = document.getElementById('navList');
+
+        ulist.removeChild(ulist.childNodes[4]);
+        ulist.removeChild(ulist.childNodes[4]);
+        ulist.removeChild(ulist.childNodes[4]);
+        ulist.removeChild(ulist.childNodes[4]);
+        ulist.removeChild(ulist.childNodes[4]);
+        ulist.removeChild(ulist.childNodes[4]);
+        ulist.removeChild(ulist.childNodes[4]);
+        ulist.removeChild(ulist.childNodes[4]);
+    }
+
+    if(link === 'login' || link === '' || link === 'logout' || link ==="handleSignin" || link === "handleSignup" ) {
+        let ulist = document.getElementById('navList');
+        ulist.removeChild(ulist.childNodes[2]);
+        ulist.removeChild(ulist.childNodes[2]);
+        ulist.removeChild(ulist.childNodes[2]);
+        ulist.removeChild(ulist.childNodes[2]);
+        ulist.removeChild(ulist.childNodes[2]);
+        ulist.removeChild(ulist.childNodes[2]);
+        ulist.removeChild(ulist.childNodes[6]);
+        ulist.removeChild(ulist.childNodes[6]);
+
+    }
+
+    if(link === "ourteam" ) {
         let ulist = document.getElementById('navList');
 
         ulist.removeChild(ulist.childNodes[2]);
         ulist.removeChild(ulist.childNodes[2]);
         ulist.removeChild(ulist.childNodes[2]);
         ulist.removeChild(ulist.childNodes[2]);
-        ulist.removeChild(ulist.childNodes[2]);
-        ulist.removeChild(ulist.childNodes[2]);
-        ulist.removeChild(ulist.childNodes[4]);
-        ulist.removeChild(ulist.childNodes[4]);
+        ulist.removeChild(ulist.childNodes[6]);
+        ulist.removeChild(ulist.childNodes[6]);
+        ulist.removeChild(ulist.childNodes[6]);
+        ulist.removeChild(ulist.childNodes[6]);
 
     }
 
@@ -48,8 +79,8 @@ function headerModification(){
         ulist.removeChild(ulist.childNodes[2]);
         ulist.removeChild(ulist.childNodes[4]);
         ulist.removeChild(ulist.childNodes[4]);
-        ulist.removeChild(ulist.childNodes[4]);
-        ulist.removeChild(ulist.childNodes[4]);
+        ulist.removeChild(ulist.childNodes[6]);
+        ulist.removeChild(ulist.childNodes[6]);
     }
 
     if(path.includes('rankings')) {
