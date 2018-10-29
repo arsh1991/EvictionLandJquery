@@ -9,6 +9,7 @@ var rankingsRouter = require('./routes/rankings');
 var analyzeData =  require('./routes/analyzeData');
 var mapRouter = require('./routes/maps');
 var adminRouter = require('./routes/admin');
+var multer = require('multer');
 
 var app = express();
 
@@ -26,5 +27,6 @@ app.use('/rankings', rankingsRouter);
 app.use('/analyzedata', analyzeData);
 app.use('/map', mapRouter);
 app.use('/admin', adminRouter);
+
 
 module.exports = app;

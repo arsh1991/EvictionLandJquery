@@ -1,6 +1,9 @@
 const monk = require('monk');
 const url = 'localhost:27017/cmpe280';
 const db = monk(url);
+var Converter = require("csvtojson").Converter;
+var converter = new Converter({});
+var csv = require("csvtojson");
 
 module.exports.login = function(req,res) {
     res.render('../views/adminLogin',{
@@ -41,4 +44,31 @@ else {
         error: "Invalid Username/Password"
     });
 })
+};
+
+module.exports.handleAddDocument = function(req , res){
+   /* converter.fromFile(req.file.path+".csv",function(err,result){
+        if(err){
+            console.log("Error");
+            console.log(err);
+        }
+        var data = result;
+        console.log("here");
+        console.log(result);
+        res.json({'msg': 'File uploaded successfully!', 'file': data});
+    });*/
+
+    console.log(req.file);
+    var json = "";
+    converter.fromFile("./public/uploads/"+req.file.filename+".csv",function(err,result){
+        if(err){
+            console.log("An Error Has Occured");
+            console.log(err);
+        }
+        json = result;
+        console.log(json);
+        res.json({'msg': 'File uploaded successfully!', 'file': json});
+    });
+    res.json({'msg': 'File uploaded successfully!', 'file': json});
+
 };
