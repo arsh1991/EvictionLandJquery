@@ -43,7 +43,7 @@ function headerModification(){
         ulist.removeChild(ulist.childNodes[4]);
     }
 
-    if(link === 'login' || link === '' || link === 'logout' || link ==="handleSignin" || link === "handleSignup" ) {
+    if(link === 'login' || link === '' || link === 'logout' || link ==="handleSignin" || link === "handleSignup" || link === "admin") {
         let ulist = document.getElementById('navList');
         ulist.removeChild(ulist.childNodes[2]);
         ulist.removeChild(ulist.childNodes[2]);

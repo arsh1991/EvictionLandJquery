@@ -1,0 +1,35 @@
+<html>
+<meta charset="utf-8">
+
+<head>
+    <link href="/stylesheets/jquery-ui.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="/javascripts/domModify.js"></script>
+    <script src="/external/jquery/jquery.js"></script>
+    <script src="/javascripts/jquery-ui.js"></script>
+</head>
+
+<body onload=headerModification()>
+<div class="header"></div>
+<div>
+    <% include header %>
+
+    <div class="forms">
+        <div class="form1">
+            <form class="rankingForm" method="get" action="/rankings/state">
+                <div class="heading">Please search a region to display Eviction Rankings</div>
+
+                <div class="ui-widget">
+                    <label for="tags">Search: </label>
+                    <input id="tags" name="selectedState">
+                    <button class="okButton" type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+</div>
+<% include footer %>
+</body>
