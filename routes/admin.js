@@ -9,7 +9,7 @@ var storage = multer.diskStorage({
     },
     filename: (req, file, cb) =>
     {
-        cb(null, file.fieldname + '-' + Date.now()+".csv")
+        cb(null, file.fieldname + '-' + Date.now()+".xlsx")
     }
     });
 var upload = multer({storage: storage});
