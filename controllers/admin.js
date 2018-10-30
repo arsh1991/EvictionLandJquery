@@ -182,7 +182,7 @@ module.exports.updateUser = function (req, res) {
         else
         {
             var newvalues = { $set: {userName: req.body.username, phone: req.body.number } };
-            collection.updateOne({"email": email}, newvalues).then((data) =>
+            collection.update({"email": email}, newvalues).then((data) =>
             {
                 console.log(data);
                 res.render('../views/landing', {
