@@ -8,7 +8,7 @@ html {
     padding: 0;
 }
 
-.okButton, .clearButton, .cancelButton {
+.okButton, .clearButton, .cancelButton, .adminSign {
     font-size: 14px;
     border: 1px solid;
     border-color: white;
