@@ -19,9 +19,12 @@
         <div id="csvfileUpload">
             <form method="post" enctype="multipart/form-data" action="/admin/add">
 
-                <label for="csvfile">CSV File Upload</label><br>
+                <h4 for="csvfile">CSV File Upload</h4>
+
                 <input type="file" name="csvfile" id="csvfile"><br>
                 <button type="submit">Submit</button>
+                <label><%= message%></label>
+                <label><%= error%></label>
             </form>
         </div>
     </div>

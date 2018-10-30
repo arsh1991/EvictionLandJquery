@@ -19,7 +19,6 @@ module.exports.home = function(req,res) {
 };
 
 module.exports.handleSignin = function(req,res) {
-    console.log("here");
     const email = req.body.email;
     const password = req.body.password;
 
@@ -46,12 +45,36 @@ module.exports.handleSignin = function(req,res) {
 };
 
 module.exports.handleAddDocument = function(req , res){
-    console.log(req.file);
-    var data = xlsx.readFile('./public/uploads/'+req.file.filename).Sheets.Sheet1;
+    var data = xlsx.readFile('./public/uploads/'+req.file.filename).Sheets.FullExtStats;
     var statesJsonArray = xlsx.utils.sheet_to_json(data);
-    console.log(statesJsonArray);
-    res.render('../views/landing',{
-        message :"",
-        error:""
-    });
+
+    if(statesJsonArray.length!=0 && statesJsonArray[0].year && statesJsonArray[0].state
+        && statesJsonArray[0].County && statesJsonArray[0].fips && statesJsonArray[0].State_Reported_Cases){
+        const cases = db.get('reportedCases');
+        cases.drop().then(() =>{
+            cases.insert(statesJsonArray).then((dataInserted) => {
+                console.log("Data inserted into the database.");
+
+                res.render('../views/landing',{
+                    message :"Data Inserted successfully",
+                    error:""
+                });
+            }).catch((err) => {
+                console.log("Error occured while inserting data into the database");
+                res.render('../views/landing',{
+                    message :"",
+                    error:"Backend Error: Unable to insert data into database"
+                });
+            }).then(() => {
+                db.close();
+            })
+        });
+
+    } else {
+        res.render('../views/landing',{
+            message :"",
+            error:"File is not in the required format"
+        });
+    }
+
 };
