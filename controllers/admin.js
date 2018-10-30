@@ -186,7 +186,7 @@ module.exports.updateUser = function (req, res) {
             {
                 console.log(data);
                 res.render('../views/landing', {
-                    'userdata': data,
+                    'userdata': [],
                     'selected': email,
                     message: "",
                     error: "",

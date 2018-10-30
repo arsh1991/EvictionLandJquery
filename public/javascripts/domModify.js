@@ -5,8 +5,8 @@ function headerModification(){
     const pathArray = path.split('/');
 
     const link = pathArray[pathArray.length-1];
-
-    if(link === 'home') {
+    console.log(link);
+    if(link === 'home' || link.includes("searchuser")) {
         let ulist = document.getElementById('navList');
 
         ulist.removeChild(ulist.childNodes[2]);
@@ -43,7 +43,7 @@ function headerModification(){
         ulist.removeChild(ulist.childNodes[4]);
     }
 
-    if(link === 'login' || link === '' || link === 'logout' || link ==="handleSignin" || link === "handleSignup" || link === "admin") {
+    if(link === 'login' || link === '' || link === 'logout' || link ==="handleSignin" || link === "handleSignup" || link.includes("admin")) {
         let ulist = document.getElementById('navList');
         ulist.removeChild(ulist.childNodes[2]);
         ulist.removeChild(ulist.childNodes[2]);
