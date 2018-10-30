@@ -55,6 +55,7 @@
                         data: data,
                         success: function (res) {
                             $('#searchResult').html("Updated User");
+                            document.getElementById("editContainer").style.display = "none";
                         }
                     });
             }
@@ -118,7 +119,7 @@
                 </div>
             </div>
             <div id="editContainer">
-                <form>
+
                     <div class="inputFields">
                         <label class="feildName">Email: </label>
                         <input id ="editemail" class="email" name="email" type="text" disabled/>
@@ -137,7 +138,7 @@
                     <div class="inputFields">
                         <button class="update okButton" id="Update" onclick="updateuser(event)">Update</button>
                     </div>
-                </form>
+
             </div>
 
         </div>
