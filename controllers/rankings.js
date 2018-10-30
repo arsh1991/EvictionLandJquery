@@ -1,7 +1,8 @@
 var xlsx = require('xlsx');
-var data = xlsx.readFile('./public/data/data.xlsx').Sheets.Sheet1;
 var states = xlsx.readFile('./public/data/states.xlsx').Sheets.Sheet1;
-
+const monk = require('monk');
+const url = 'localhost:27017/cmpe280';
+const db = monk(url);
 
 /*
  *
@@ -10,13 +11,26 @@ var states = xlsx.readFile('./public/data/states.xlsx').Sheets.Sheet1;
  *
  */
 module.exports.rankings = function(req,res) {
-    var dataJsonArray = xlsx.utils.sheet_to_json(data).slice(0,10);
     var statesJsonArray = xlsx.utils.sheet_to_json(states);
-    res.render('../views/rankings', {
-        'data':dataJsonArray,
-        'states':statesJsonArray,
-        'selected':"Select a state"
+    const cases = db.get('reportedCases');
+    var dataJsonArray = []
+
+    cases.find({"year":2016}, {sort: {State_Reported_Cases: -1}, limit:10}).then((results)=>{
+       for(var i= 0; i < results.length; i++){
+            dataJsonArray.push({
+                rank: i+1,
+                state: results[i].state,
+                county: results[i].County,
+                case_numbers: results[i].State_Reported_Cases
+            });
+       }
+       res.render('../views/rankings', {
+            'data':dataJsonArray,
+            'states':statesJsonArray,
+            'selected':"Select a state"
+       });
     });
+
 };
 
 
@@ -28,19 +42,25 @@ module.exports.rankings = function(req,res) {
  */
 module.exports.countyRankingsByState = function(req,res) {
     const selectedState = req.query.selectedState;
-    var dataJsonArray = xlsx.utils.sheet_to_json(data);
-
-    // filter data based on selected state
-    const rankingsForState = dataJsonArray.filter(function (data) {
-        return data.state == selectedState;
-    });
-
     var statesJsonArray = xlsx.utils.sheet_to_json(states);
+    var dataJsonArray= [];
+    const cases = db.get('reportedCases');
 
-    res.render('../views/rankings', {
-        'data':rankingsForState.slice(0,10),
-        'states':statesJsonArray,
-        'selected':selectedState
+    cases.find({"year":2016, "state": selectedState}, {sort: {State_Reported_Cases: -1}, limit:10}).then((results)=>{
+        for(var i= 0; i < results.length; i++){
+            dataJsonArray.push({
+                rank: i+1,
+                state: results[i].state,
+                county: results[i].County,
+                case_numbers: results[i].State_Reported_Cases
+            });
+        }
+        res.render('../views/rankings', {
+            'data':dataJsonArray,
+            'states':statesJsonArray,
+            'selected':"Select a state"
+        });
     });
+
 };
 
