@@ -53,13 +53,23 @@
 }
 
 .userRecord span{
-   display: inline-block;
-
-    font-size: 20px;
+    display: inline-block;
     padding: 10px 0px 10px 10px ;
 }
-.userName, .email, .phone{
-    width: 25%;
+.userName{
+    width: 17%;
+}
+
+.email {
+    width: 40%;
+}
+
+.phone {
+    width: 15%;
+}
+
+.userName, .email, .phone {
+    font-size: 15px;
 }
 
 
@@ -72,4 +82,3 @@
 .forms{
     min-height: 400px;
 }
-
