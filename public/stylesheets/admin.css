@@ -20,4 +20,25 @@
     background-color: maroon;
     padding: 5px 25px;
 }
+
+
+.leftside{
+    width: 49%;
+    display: inline-block;
+}
+.rightside{
+    width: 50%;
+    display: inline-block;
+}
+
+.userRecord {
+    border: 1px solid;
+    margin-bottom: 20px;
+}
+
+.userRecord span{
+   display: inline-block;
+    width: 22%;
+    font-size: 20px;
+    padding: 10px 0px 10px 10px ;
 }

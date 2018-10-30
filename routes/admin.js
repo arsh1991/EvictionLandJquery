@@ -23,6 +23,9 @@ router.post('/handleSignin', adminController.handleSignin);
 router.get('/home', adminController.home);
 
 router.post('/add', upload.single("csvfile"), adminController.handleAddDocument);
-;
+
+router.get('/searchuser', adminController.searchUser);
+
+router.post('/deleteUser', adminController.deleteUser);
 
 module.exports = router;
