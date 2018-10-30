@@ -1,5 +1,5 @@
 <html>
-<meta charset="utf-8">
+    <meta charset="utf-8">
 
 <head>
     <link href="/stylesheets/jquery-ui.css" rel="stylesheet">
@@ -27,29 +27,32 @@
     </script>
 </head>
 
-<body onload=headerModification()>
-<div class="header"></div>
-<div>
-    <% include header %>
+
+    <body onload=headerModification()>
+        <div class="header"></div>
+        <div>
+            <% include header %>
 
     <div class="forms">
         <div class="leftside" id="csvfileUpload">
             <form method="post" enctype="multipart/form-data" action="/admin/add">
-                <h4 for="csvfile">CSV File Upload</h4>
+                <h4 for="csvfile">Please Upload a file to populate the Database. (.xlxs)</h4>
+
                 <input type="file" name="csvfile" id="csvfile"><br>
-                <button type="submit">Submit</button>
-                <label><%= message %></label>
-                <label><%= error %></label>
+                <br/>
+                <button type="submit" class="okButton">Submit</button>
+                <label class="msg"><%= message%></label>
+                <label class="err"><%= error%></label>
             </form>
         </div>
         <div class="rightside">
             <form class="UserForm" method="get" action="/admin/searchuser">
-                <div class="heading">Please search a user</div>
-                <div class="ui-widget">
+                <h4 >Please enter User's Email ID to search</h4>
+                <div class="">
                     <label for="tags">Search: </label>
-                    <input id="tags" name="user">
-                    <button id="searchUser" class="okButton" type="submit">Submit</button>
-                    <label><%= errorMsg %></label>
+                    <input id="tags" class="searchuser" name="user"><br/>
+                    <button id="searchUser" class="okButton" type="submit">Submit</button><br/>
+                    <label class="err"><%= errorMsg %></label>
                 </div>
             </form>
             <script>
@@ -83,7 +86,6 @@
     </div>
 </div>
 
-
-</div>
-<% include footer %>
-</body>
+        </div>
+        <% include footer %>
+    </body>

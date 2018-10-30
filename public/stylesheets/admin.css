@@ -10,25 +10,43 @@
     font-weight: 700;
 }
 
-.okButton {
-    margin-top: 15px;
-    font-size: 20px;
+.okButton, .clearButton {
+    font-size: 14px;
     border: 1px solid;
     border-color: white;
     color: white;
     font-weight: 400;
     background-color: maroon;
-    padding: 5px 25px;
+    height: 30px;
 }
+
+.clearButton {
+    margin-left: 15px;
+}
+
+.heading {
+    margin-left: 45%;
+}
+
+.msg {
+    color: green;
+}
+
+.err {
+    color: red;
+}
+
 
 
 .leftside{
     width: 49%;
     display: inline-block;
+    vertical-align: top;
 }
 .rightside{
     width: 50%;
     display: inline-block;
+    vertical-align: top;
 }
 
 .userRecord {
@@ -42,3 +60,14 @@
     font-size: 20px;
     padding: 10px 0px 10px 10px ;
 }
+
+.searchuser{
+    line-height: 20px;
+    width: 300px;
+    margin-bottom: 15px;
+}
+
+.forms{
+    min-height: 400px;
+}
+
