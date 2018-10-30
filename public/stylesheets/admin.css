@@ -36,15 +36,13 @@
     color: red;
 }
 
-
-
 .leftside{
-    width: 49%;
+    width: 40%;
     display: inline-block;
     vertical-align: top;
 }
 .rightside{
-    width: 50%;
+    width: 59%;
     display: inline-block;
     vertical-align: top;
 }
@@ -56,10 +54,14 @@
 
 .userRecord span{
    display: inline-block;
-    width: 22%;
+
     font-size: 20px;
     padding: 10px 0px 10px 10px ;
 }
+.userName, .email, .phone{
+    width: 25%;
+}
+
 
 .searchuser{
     line-height: 20px;

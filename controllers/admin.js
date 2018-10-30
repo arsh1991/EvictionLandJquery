@@ -129,7 +129,6 @@ module.exports.searchUser = function (req, res) {
 };
 
 module.exports.deleteUser = function (req, res) {
-    console.log(req.body.user);
     var email =  req.body.user;
     const collection = db.get('users');
 
@@ -159,5 +158,41 @@ module.exports.deleteUser = function (req, res) {
             });
         });
     }
+    });
+};
+
+module.exports.updateUser = function (req, res) {
+    console.log("user"+req.body.email);
+    var email =  req.body.email;
+    const collection = db.get('users');
+
+    collection.find({ "email" : email}).then((data) =>
+    {
+        console.log("results: "+data);
+        if (data.length === 0) {
+            res.send({status:"ok",
+                'data': "",
+                'userdata': [],
+                'selected': email,
+                message: "",
+                error: "",
+                errorMsg: "User not found"
+            });
+        }
+        else
+        {
+            var newvalues = { $set: {userName: req.body.username, phone: req.body.number } };
+            collection.updateOne({"email": email}, newvalues).then((data) =>
+            {
+                console.log(data);
+                res.render('../views/landing', {
+                    'userdata': data,
+                    'selected': email,
+                    message: "",
+                    error: "",
+                    errorMsg: "user updated"
+                 });
+            });
+        }
     });
 };

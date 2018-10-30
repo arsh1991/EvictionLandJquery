@@ -24,6 +24,41 @@
                     }
                 });
         }
+
+        function edituser(event) {
+            var email = event.currentTarget.closest(".userRecord").querySelector(".email").innerText;
+            var userName = event.currentTarget.closest(".userRecord").querySelector(".userName").innerText;
+            var phone = event.currentTarget.closest(".userRecord").querySelector(".phone").innerText;
+            document.getElementById("editname").value = userName;
+            document.getElementById("editNumber").value = phone;
+            document.getElementById("editemail").value = email;
+        }
+        
+        function updateuser(event) {
+            var username = document.getElementById("editname").value;
+            var number = document.getElementById("editNumber").value;
+            var email = document.getElementById("editemail").value;
+            if(username == "" || number == ""){
+
+            }
+            else {
+                var data = {
+                    username :  username,
+                    number :  number,
+                    email : email
+                };
+                const Url = "http://localhost:3000/admin/updateUser";
+                $.ajax(
+                    {
+                        type: "POST",
+                        url: Url,
+                        data: data,
+                        success: function (res) {
+                            $('#searchResult').html("Updated User");
+                        }
+                    });
+            }
+        }
     </script>
 </head>
 
@@ -73,11 +108,36 @@
                     </span>
                     <span class="phone">
                         <%= userdata[i].phone %>
-                </span>
-                    <span>
-                    <button class="delete" id="Delete" onclick="deleteuser(event)">Delete</button>
-                </span>
+                    </span>
+                    <span class="delB">
+                        <button class="delete" id="Delete" onclick="deleteuser(event)">Delete</button>
+                    </span>
+                    <span class="editB">
+                        <button class="edit" id="Edit" onclick="edituser(event)">Edit</button>
+                    </span>
                 </div>
+            </div>
+            <div id="editContainer">
+                <form>
+                    <div class="inputFields">
+                        <label class="feildName">Email: </label>
+                        <input id ="editemail" class="email" name="email" type="text" disabled/>
+                        <label class="error" id="userNameError"></label>
+                    </div>
+                    <div class="inputFields">
+                        <label class="feildName">Name: </label>
+                        <input id ="editname" class="name" name="userName" type="text" />
+                        <label class="error" id="userNameError"></label>
+                    </div>
+                    <div class="inputFields">
+                        <label class="feildName">Phone:</label>
+                        <input id ="editNumber" class="phone" name="phone" type="text" />
+                        <label class="error" id="phoneError"></label>
+                    </div>
+                    <div class="inputFields">
+                        <button class="update okButton" id="Update" onclick="updateuser(event)">Update</button>
+                    </div>
+                </form>
             </div>
 
         </div>

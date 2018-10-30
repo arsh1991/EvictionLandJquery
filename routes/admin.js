@@ -28,4 +28,6 @@ router.get('/searchuser', adminController.searchUser);
 
 router.post('/deleteUser', adminController.deleteUser);
 
+router.post('/updateUser', adminController.updateUser);
+
 module.exports = router;
