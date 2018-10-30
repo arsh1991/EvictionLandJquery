@@ -23,3 +23,15 @@
 .clearButton {
     margin-left: 15px;
 }
+
+.heading {
+    margin-left: 45%;
+}
+
+.msg {
+    color: green;
+}
+
+.err {
+    color: red;
+}

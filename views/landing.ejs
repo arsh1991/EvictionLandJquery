@@ -1,35 +1,40 @@
 <html>
-<meta charset="utf-8">
+    <meta charset="utf-8">
 
-<head>
-    <link href="/stylesheets/jquery-ui.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="/javascripts/domModify.js"></script>
-    <script src="/external/jquery/jquery.js"></script>
-    <script src="/javascripts/jquery-ui.js"></script>
-</head>
+    <head>
+        <link rel="stylesheet" href="/stylesheets/admin.css">
+        <link href="/stylesheets/jquery-ui.css" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="/javascripts/domModify.js"></script>
+        <script src="/external/jquery/jquery.js"></script>
+        <script src="/javascripts/jquery-ui.js"></script>
+    </head>
 
-<body onload=headerModification()>
-<div class="header"></div>
-<div>
-    <% include header %>
+    <body onload=headerModification()>
+        <div class="header"></div>
+        <div>
+            <% include header %>
 
-    <div class="forms">
-        <div id="csvfileUpload">
-            <form method="post" enctype="multipart/form-data" action="/admin/add">
+                <div class="adminHeading">
+                    <h2 class="heading">Admin Home</h2>
+                </div>
+                <div class="forms">
+                    <div id="csvfileUpload">
+                        <form method="post" enctype="multipart/form-data" action="/admin/add">
 
-                <h4 for="csvfile">CSV File Upload</h4>
+                            <h4 for="csvfile">Please Upload a file to populate the Database. (.xlxs)</h4>
 
-                <input type="file" name="csvfile" id="csvfile"><br>
-                <button type="submit">Submit</button>
-                <label><%= message%></label>
-                <label><%= error%></label>
-            </form>
+                            <input type="file" name="csvfile" id="csvfile"><br>
+                            <br/>
+                            <button type="submit" class="okButton">Submit</button>
+                            <label class="msg"><%= message%></label>
+                            <label class="err"><%= error%></label>
+                        </form>
+                    </div>
+                </div>
+
+
         </div>
-    </div>
-
-
-</div>
-<% include footer %>
-</body>
+        <% include footer %>
+    </body>
