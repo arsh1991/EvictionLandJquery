@@ -25,10 +25,12 @@
                         .css('backgroundColor', '#ff0')
                         .animate({backgroundColor: '#ddd'}, 1000);
 
+                    $("#chart1").children().children().remove();
+                    $("#chart2").children().children().remove();
 
                     const Url = "http://localhost:3000/dashboard/state?selectedState="+selected.name;
                     $.ajax({url : Url, success: function (res) {
-                        console.log(res.data);
+                        console.log(res.yearData);
                         addBargraph(res.data);
                         addLineGraph(res.yearData);
                     }});
@@ -48,8 +50,11 @@
                     .staggerLabels(true)
                     .showValues(true)
                     .duration(250)
-                    .height(300);
+                    .height(300)
+                    .width(300);
                 ;
+
+
                 d3.select('#chart1 svg')
                     .datum(BarChart)
                     .call(chart);
@@ -77,6 +82,7 @@
                     .showXAxis(true)
                 ;
 
+                chart.y(function (d) { return d.y; });
                 chart.xAxis
                     .axisLabel('Year');
 

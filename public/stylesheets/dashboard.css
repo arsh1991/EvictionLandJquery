@@ -41,6 +41,7 @@ g.nv-y.nv-axis.nvd3-svg {
     margin: 30px;
     padding: 30px;
     height: 325px;
+    width: 325px;
 }
 
 .title {
@@ -57,4 +58,8 @@ g.nv-y.nv-axis.nvd3-svg {
     font-weight: bold;
     width: 300px;
     margin: 30px;
+}
+
+.nv-axisMaxMin{
+    font-size: smaller;
 }
