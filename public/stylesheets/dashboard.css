@@ -21,3 +21,13 @@
     font-size: 20px;
     font-weight: bold;
 }
+
+g.y-border {
+    stroke: slategrey;
+    stroke-opacity: 0.75;
+}
+
+g.nv-y.nv-axis.nvd3-svg {
+    stroke: slategrey;
+    stroke-opacity: 0.75;
+}

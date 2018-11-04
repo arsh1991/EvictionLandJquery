@@ -1,11 +1,13 @@
 /* nvd3 version 1.8.1 (https://github.com/novus/nvd3) 2015-06-15 */
+
+
 .nvd3 .nv-axis {
     pointer-events:none;
     opacity: 1;
 }
 
 .nvd3 .nv-axis path {
-    fill: none;
+    fill: red;
     stroke: #000;
     stroke-opacity: .75;
     shape-rendering: crispEdges;
@@ -16,11 +18,11 @@
 }
 
 .nvd3 .nv-axis.nv-x path.domain {
-    stroke-opacity: 0;
+    stroke-opacity: 1;
 }
 
 .nvd3 .nv-axis line {
-    fill: none;
+    fill: red;
     stroke: #e5e5e5;
     shape-rendering: crispEdges;
 }
