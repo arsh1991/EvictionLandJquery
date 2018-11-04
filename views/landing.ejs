@@ -85,6 +85,14 @@
                 <label class="err"><%= error %></label>
             </form>
 
+            <form method="post" enctype="multipart/form-data" action="/admin/addUSData">
+                <h4 for="csvfile">Please upload a file for dashboard</h4>
+
+                <input type="file" name="USDatafile" id="USDatafile"><br>
+                <br/>
+                <button type="submit" class="okButton">Submit</button>
+                <label class="msg"><%= message %></label>
+                <label class="err"><%= error %></label>
             </form>
         </div>
         <div class="rightside">
