@@ -32,16 +32,12 @@
                         addBargraph(res.data);
                         addLineGraph(res.yearData);
                     }});
-
-
-
-
-
-
                 }
             });
         });
 
+        addBargraph([]);
+        addLineGraph([]);
 
         function addBargraph(BarChart){
             nv.addGraph(function() {
@@ -117,6 +113,7 @@
 
 <body onload=headerModification()>
 <% include header %>
+<div class="title">Please select any state to view data</div>
 <div id="alert">Selected State: </div>
 <div id="map" style="width: 500px; height: 300px"></div>
 <div id="chart1">

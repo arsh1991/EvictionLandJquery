@@ -30,6 +30,17 @@ function headerModification(){
         ulist.removeChild(ulist.childNodes[6]);
     }
 
+    if(link === 'dashboard' || link === '') {
+        let ulist = document.getElementById('navList');
+
+        ulist.removeChild(ulist.childNodes[6]);
+        ulist.removeChild(ulist.childNodes[6]);
+        ulist.removeChild(ulist.childNodes[6]);
+        ulist.removeChild(ulist.childNodes[6]);
+        ulist.removeChild(ulist.childNodes[6]);
+        ulist.removeChild(ulist.childNodes[6]);
+    }
+
     if(link === 'rankings' || link.includes("state")) {
         let ulist = document.getElementById('navList');
 
