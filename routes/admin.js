@@ -30,4 +30,6 @@ router.post('/deleteUser', adminController.deleteUser);
 
 router.post('/updateUser', adminController.updateUser);
 
+router.post('/addUSData', upload.single("USDatafile"), adminController.handleAddUSDocument);
+
 module.exports = router;

@@ -13,7 +13,7 @@ const db = monk(url);
 module.exports.rankings = function(req,res) {
     var statesJsonArray = xlsx.utils.sheet_to_json(states);
     const cases = db.get('reportedCases');
-    var dataJsonArray = []
+    var dataJsonArray = [];
 
     cases.find({"year":2016}, {sort: {State_Reported_Cases: -1}, limit:10}).then((results)=>{
        for(var i= 0; i < results.length; i++){

@@ -61,7 +61,8 @@ module.exports.handleAddDocument = function (req, res) {
         res.render('../views/landing', {
             message: "Data Inserted successfully",
             error: "",
-            errorMsg: ""
+            errorMsg: "",
+            "userdata" : []
         });
     }).
         catch((err) => {
@@ -69,7 +70,8 @@ module.exports.handleAddDocument = function (req, res) {
         res.render('../views/landing', {
             message: "",
             error: "Backend Error: Unable to insert data into database",
-            errorMsg: ""
+            errorMsg: "",
+            "userdata" : []
         });
     }).
         then(() => {
@@ -82,7 +84,8 @@ module.exports.handleAddDocument = function (req, res) {
         res.render('../views/landing', {
             message: "",
             error: "File is not in the required format",
-            errorMsg: ""
+            errorMsg: "",
+            "userdata" : []
         });
     }
 };
@@ -195,4 +198,47 @@ module.exports.updateUser = function (req, res) {
             });
         }
     });
+};
+
+
+module.exports.handleAddUSDocument = function (req, res) {
+    var data = xlsx.readFile('./public/uploads/' + req.file.filename).Sheets.states;
+    var statesJsonArray = xlsx.utils.sheet_to_json(data);
+    console.log(statesJsonArray);
+    if (statesJsonArray.length != 0 ) {
+        const cases = db.get('USData');
+        cases.drop().then(() => {
+            cases.insert(statesJsonArray).then((dataInserted) => {
+            console.log("Data inserted into the database.");
+
+        res.render('../views/landing', {
+            message: "Data Inserted successfully",
+            error: "",
+            errorMsg: "",
+            "userdata" : []
+        });
+    }).
+        catch((err) => {
+            console.log("Error occured while inserting data into the database");
+        res.render('../views/landing', {
+            message: "",
+            error: "Backend Error: Unable to insert data into database",
+            errorMsg: "",
+            "userdata" : []
+        });
+    }).
+        then(() => {
+            db.close();
+    })
+    })
+        ;
+
+    } else {
+        res.render('../views/landing', {
+            message: "",
+            error: "File is not in the required format",
+            errorMsg: "",
+            "userdata" : []
+        });
+    }
 };
