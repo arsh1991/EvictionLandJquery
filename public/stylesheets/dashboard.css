@@ -4,3 +4,20 @@
     padding: 30px;
     height: 325px;
 }
+
+#chart2 svg{
+    border: 1px solid black;
+    margin: 30px;
+    padding: 30px;
+    height: 325px;
+    width: 500px;
+}
+
+#chart1, #chart2{
+    display: inline-block;
+}
+
+.Title {
+    font-size: 20px;
+    font-weight: bold;
+}

@@ -29,8 +29,13 @@
                     const Url = "http://localhost:3000/dashboard/state?selectedState="+selected.name;
                     $.ajax({url : Url, success: function (res) {
                         console.log(res.data);
-                        addgraph(res.data);
+                        addBargraph(res.data);
+                        addLineGraph(res.yearData);
                     }});
+
+
+
+
 
 
                 }
@@ -38,7 +43,7 @@
         });
 
 
-        function addgraph(BarChart){
+        function addBargraph(BarChart){
             nv.addGraph(function() {
 
                 var chart = nv.models.discreteBarChart()
@@ -58,10 +63,48 @@
                     .attr("x", 150)
                     .attr("y", 310)
                     .attr("text-anchor", "middle")
-                    .text("Comparision of evictions");
+                    .text("Comparision of evictions")
+                    .attr("class","Title")
 
 
                 nv.utils.windowResize(chart.update);
+                return chart;
+            });
+        }
+
+        function addLineGraph(lineChart) {
+            nv.addGraph(function() {
+                var chart = nv.models.lineChart()
+                    .useInteractiveGuideline(true)
+                    .height(300)
+                    .showYAxis(true)
+                    .showXAxis(true)
+                ;
+
+                chart.xAxis
+                    .axisLabel('Year');
+
+                chart.yAxis
+                    .axisLabel('Number of evictions');
+
+                d3.select('#chart2 svg')
+                    .datum(lineChart)
+                    .transition().duration(500)
+                    .call(chart)
+                ;
+
+                d3.select('#chart2 svg')
+                    .append("text")
+                    .attr("x", 250)
+                    .attr("y", 310)
+                    .attr("text-anchor", "middle")
+                    .text("Comparision of evictions from 2000 to 2016")
+                    .attr("class","Title");
+
+                d3.select('.nv-y').attr('class', 'y-border');
+
+                nv.utils.windowResize(chart.update);
+
                 return chart;
             });
         }
