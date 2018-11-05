@@ -1,6 +1,8 @@
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
+var session = require('express-session');
+var MongoDBStore = require('connect-mongodb-session')(session);
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
@@ -16,7 +18,32 @@ var piechartRouter = require('./routes/piechart');
 
 var app = express();
 
+var store = new MongoDBStore({
+  uri: 'mongodb://localhost:27017/cmpe280',
+  collection: 'sessionsData'
+});
+
+store.on('connected', function() {
+    store.client; // The underlying MongoClient object from the MongoDB driver
+});
+
+// Catch errors
+store.on('error', function(error) {
+  assert.ifError(error);
+  assert.ok(false);
+});
+
 app.set('view engine', 'ejs');
+
+app.use(require('express-session')({
+  secret: 'cmpe280',
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
+  },
+  store: store,
+  resave: true,
+  saveUninitialized: true
+}));
 
 app.use(logger('dev'));
 app.use(express.json());

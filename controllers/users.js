@@ -80,6 +80,9 @@ module.exports.handleSignin = function(req,res) {
 
     collection.find({ "email" : email}).then((data) => {
         if(email === data[0].email && password === data[0].password) {
+
+            //save session into MongoDB
+            req.session.userSession = data;
             res.redirect('/home');
         }
         else {

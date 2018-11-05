@@ -1,4 +1,5 @@
 module.exports.home = function(req,res) {
+    console.log("session data on home : ", req.session.userSession);
     res.render('../views/home');
 };
 
