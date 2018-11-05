@@ -13,7 +13,7 @@ var mapRouter = require('./routes/maps');
 var adminRouter = require('./routes/admin');
 var dashboard = require('./routes/dashboard');
 var multer = require('multer');
-
+var chartRouter = require('./routes/linechart');
 var app = express();
 
 var store = new MongoDBStore({
@@ -56,6 +56,6 @@ app.use('/analyzedata', analyzeData);
 app.use('/map', mapRouter);
 app.use('/admin', adminRouter);
 app.use('/dashboard', dashboard);
-
+app.use('/linechart', chartRouter);
 
 module.exports = app;
