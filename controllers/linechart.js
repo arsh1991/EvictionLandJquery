@@ -4,13 +4,8 @@ const url = 'localhost:27017/cmpe280';
 const db = monk(url);
 
 module.exports.fetchData = function(req,res) {
-    const cases = db.get('USData');
 
-    cases.find({}).then((results)=>{
-        res.render('../views/linechart', {
-            'data':results
-        });
-    });
+        res.render('../views/linechart');
 };
 
 module.exports.fetchEvictionRates = function(req,res) {
@@ -51,3 +46,5 @@ module.exports.fetchEvictionRates = function(req,res) {
     });
             // resData[0]["values"] = docs;
 };
+
+
