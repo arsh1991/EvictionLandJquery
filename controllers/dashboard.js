@@ -20,7 +20,7 @@ module.exports.fetchDataByState = function(req,res) {
     const cases = db.get('USData');
     var dataJsonArray = [];
     var dataAllYearsOfState = [];
-
+    var rentBurdenAllYears = []
     cases.find(
             { "year":2016 }
 
@@ -39,8 +39,16 @@ module.exports.fetchDataByState = function(req,res) {
                     year: results1[i].year,
                     value: results1[i].evictions
                 });
+            rentBurdenAllYears.push({
+                year: results1[i].year,
+                value: results1[i]["rent-burden"]
+            })
             }
-            res.render('../views/dashboard', {'mapData':dataJsonArray, 'yearData':dataAllYearsOfState, 'state': selectedState});
+            res.render('../views/dashboard', {'mapData':dataJsonArray,
+                'yearData':dataAllYearsOfState,
+                'state': selectedState,
+                'rentBurden': rentBurdenAllYears
+            });
 
         });
 
