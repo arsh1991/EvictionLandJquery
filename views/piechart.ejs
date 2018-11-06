@@ -22,54 +22,29 @@
         $(document).ready(function() {
             $('#map').usmap({
                 'click' : function(event, selected) {
-                    $("#linechart").children().children().remove();
+                    $("#piechart").children().children().remove();
 
-                    const Url = "http://localhost:3000/linechart/state?selectedState="+selected.name;
+                    const Url = "http://localhost:3000/piechart/state?selectedState="+selected.name;
                     $.ajax({url : Url, success: function (res) {
-                            addLineGraph(res);
+                            addPieChart(res);
                         }});
                 }
             });
         });
 
-
         // addLineGraph([]);
 
-        function addLineGraph(lineChart) {
+        function addPieChart(piechart) {
             nv.addGraph(function() {
-                var chart = nv.models.lineChart()
-                    .margin({ left:100})
-                    .useInteractiveGuideline(true)
-                    .showLegend(true)
-                    .height(300)
-                    .showYAxis(true)
-                    .showXAxis(true);
+                var chart = nv.models.pieChart()
+                    .x(function(d) { return d.label })
+                    .y(function(d) { return d.value })
+                    .showLabels(false);
 
-                chart.y(function (d) { return d.y; });
-                chart.xAxis
-                    .axisLabel('Year');
-
-                chart.yAxis
-                    .axisLabel('Eviction Rate');
-
-                d3.select('#linechart svg')
-                    .datum(lineChart)
-                    .transition().duration(500).call(chart)
-                ;
-
-                d3.select('#linechart svg')
-                    .append("text")
-                    .attr("x", 250)
-                    .attr("y", 310)
-                    .attr("text-anchor", "middle")
-                    .text("Comparision of eviction rates from 2000 to 2016")
-                    .attr("class","Title");
-
-                d3.select('#linechart .nv-y').attr('class', 'y-border');
-
-                nv.utils.windowResize(function() {
-                    chart.update
-                });
+                d3.select("#piechart svg")
+                    .datum(piechart)
+                    .transition().duration(350)
+                    .call(chart);
 
                 return chart;
             });
@@ -79,7 +54,7 @@
 </head>
 <body onload=headerModification()>
 <div id="map" style="width: 500px; height: 300px"></div>
-<div id="linechart">
+<div id="piechart">
     <svg></svg>
 </div>
 </body>

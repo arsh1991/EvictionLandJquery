@@ -63,3 +63,27 @@ g.nv-y.nv-axis.nvd3-svg {
 .nv-axisMaxMin{
     font-size: smaller;
 }
+
+#linechart svg {
+    border: 1px solid black;
+    margin: 30px;
+    padding: 30px;
+    height: 325px;
+    width: 325px;
+}
+
+#linechart{
+    display: inline-block;
+}
+
+#piechart svg {
+    border: 1px solid black;
+    margin: 30px;
+    padding: 30px;
+    height: 325px;
+    width: 325px;
+}
+
+#piechart{
+    display: inline-block;
+}

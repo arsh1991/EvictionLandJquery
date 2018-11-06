@@ -14,6 +14,8 @@ var adminRouter = require('./routes/admin');
 var dashboard = require('./routes/dashboard');
 var multer = require('multer');
 var chartRouter = require('./routes/linechart');
+var piechartRouter = require('./routes/piechart');
+
 var app = express();
 
 var store = new MongoDBStore({
@@ -57,5 +59,5 @@ app.use('/map', mapRouter);
 app.use('/admin', adminRouter);
 app.use('/dashboard', dashboard);
 app.use('/linechart', chartRouter);
-
+app.use('/piechart', piechartRouter);
 module.exports = app;
