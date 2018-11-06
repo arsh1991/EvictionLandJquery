@@ -1,136 +1,141 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <title>US Map</title>
-    <link rel="stylesheet" href="/stylesheets/map.css">
-    <link rel="stylesheet" href="/stylesheets/dashboard.css">
-    <script src="/javascripts/raphael.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
-    <script src="/javascripts/color.jquery.js"></script>
-    <script src="/javascripts/jquery.usmap.js"></script>
-    <script src="/javascripts/domModify.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.2/d3.min.js" charset="utf-8"></script>
-    <link href="/stylesheets/nv.d3.min.css" >
-    <script src="/stylesheets/nv.d3.min.js"></script>
+    <head>
+        <title>US Map</title>
+        <link rel="stylesheet" href="/stylesheets/map.css">
+        <link rel="stylesheet" href="/stylesheets/dashboard.css">
+        <script src="/javascripts/raphael.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
+        <script src="/javascripts/color.jquery.js"></script>
+        <script src="/javascripts/jquery.usmap.js"></script>
+        <script src="/javascripts/domModify.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.2/d3.min.js" charset="utf-8"></script>
+        <link href="/stylesheets/nv.d3.min.css">
+        <script src="/stylesheets/nv.d3.min.js"></script>
 
-    <script>
-        var BarChart ;
-        $(document).ready(function() {
-            $('#map').usmap({
-                'click' : function(event, selected) {
-                    $('#alert')
-                        .text('Selected state: '+selected.name)
-                        .stop()
-                        .css('backgroundColor', '#ff0')
-                        .animate({backgroundColor: '#ddd'}, 1000);
+        <script>
+            var BarChart;
+            $(document).ready(function() {
+                $('#map').usmap({
+                    'click': function(event, selected) {
+                        $('#alert')
+                            .text('Selected state: ' + selected.name)
+                            .stop()
+                            .css('backgroundColor', '#ff0')
+                            .animate({
+                                backgroundColor: '#ddd'
+                            }, 1000);
 
-                    $("#chart1").children().children().remove();
-                    $("#chart2").children().children().remove();
+                        $("#chart1").children().children().remove();
+                        $("#chart2").children().children().remove();
 
-                    const Url = "http://localhost:3000/dashboard/state?selectedState="+selected.name;
-                    $.ajax({url : Url, success: function (res) {
-                        console.log(res.yearData);
-                        addBargraph(res.data);
-                        addLineGraph(res.yearData);
-                    }});
-                }
+                        const Url = "http://localhost:3000/dashboard/state?selectedState=" + selected.name;
+                        $.ajax({
+                            url: Url,
+                            success: function(res) {
+                                console.log(res.yearData);
+                                addBargraph(res.data);
+                                addLineGraph(res.yearData);
+                            }
+                        });
+                    }
+                });
             });
-        });
 
-        addBargraph([]);
-        addLineGraph([]);
+            addBargraph([]);
+            addLineGraph([]);
 
-        function addBargraph(BarChart){
-            nv.addGraph(function() {
+            function addBargraph(BarChart) {
+                nv.addGraph(function() {
 
-                var chart = nv.models.discreteBarChart()
-                    .x(function(d) { return d.label })
-                    .y(function(d) { return d.value })
-                    .staggerLabels(true)
-                    .showValues(true)
-                    .duration(250)
-                    .height(300)
-                    .width(300);
-                ;
-
-
-                d3.select('#chart1 svg')
-                    .datum(BarChart)
-                    .call(chart);
-
-                d3.select('#chart1 svg')
-                    .append("text")
-                    .attr("x", 150)
-                    .attr("y", 310)
-                    .attr("text-anchor", "middle")
-                    .text("Comparision of evictions")
-                    .attr("class","Title")
+                    var chart = nv.models.discreteBarChart()
+                        .x(function(d) {
+                            return d.label
+                        })
+                        .y(function(d) {
+                            return d.value
+                        })
+                        .staggerLabels(true)
+                        .showValues(true)
+                        .duration(250)
+                        .height(300)
+                        .width(300);;
 
 
-                nv.utils.windowResize(chart.update);
-                return chart;
-            });
-        }
+                    d3.select('#chart1 svg')
+                        .datum(BarChart)
+                        .call(chart);
 
-        function addLineGraph(lineChart) {
-            nv.addGraph(function() {
-                var chart = nv.models.lineChart()
-                    .useInteractiveGuideline(true)
-                    .height(300)
-                    .showYAxis(true)
-                    .showXAxis(true)
-                ;
-
-                chart.y(function (d) { return d.y; });
-                chart.xAxis
-                    .axisLabel('Year');
-
-                chart.yAxis
-                    .axisLabel('Number of evictions');
-
-                d3.select('#chart2 svg')
-                    .datum(lineChart)
-                    .transition().duration(500)
-                    .call(chart)
-                ;
-
-                d3.select('#chart2 svg')
-                    .append("text")
-                    .attr("x", 250)
-                    .attr("y", 310)
-                    .attr("text-anchor", "middle")
-                    .text("Comparision of evictions from 2000 to 2016")
-                    .attr("class","Title");
-
-                d3.select('#chart2 .nv-y').attr('class', 'y-border');
-
-                nv.utils.windowResize(chart.update);
-
-                return chart;
-            });
-        }
+                    d3.select('#chart1 svg')
+                        .append("text")
+                        .attr("x", 150)
+                        .attr("y", 310)
+                        .attr("text-anchor", "middle")
+                        .text("Comparision of evictions")
+                        .attr("class", "Title")
 
 
+                    nv.utils.windowResize(chart.update);
+                    return chart;
+                });
+            }
 
-    </script>
+            function addLineGraph(lineChart) {
+                nv.addGraph(function() {
+                    var chart = nv.models.lineChart()
+                        .useInteractiveGuideline(true)
+                        .height(300)
+                        .showYAxis(true)
+                        .showXAxis(true);
 
-</head>
+                    chart.y(function(d) {
+                        return d.y;
+                    });
+                    chart.xAxis
+                        .axisLabel('Year');
 
-<body onload=headerModification()>
-<% include header %>
-<div class="title">Please select any state to view data</div>
-<div id="alert">Selected State: </div>
-<div id="map" style="width: 500px; height: 300px"></div>
-<div id="chart1">
-    <svg></svg>
-</div>
+                    chart.yAxis
+                        .axisLabel('Number of evictions');
 
-<div id="chart2">
-    <svg></svg>
-</div>
+                    d3.select('#chart2 svg')
+                        .datum(lineChart)
+                        .transition().duration(500)
+                        .call(chart);
 
-<% include footer%>
-</body>
+                    d3.select('#chart2 svg')
+                        .append("text")
+                        .attr("x", 250)
+                        .attr("y", 310)
+                        .attr("text-anchor", "middle")
+                        .text("Comparision of evictions from 2000 to 2016")
+                        .attr("class", "Title");
+
+                    d3.select('#chart2 .nv-y').attr('class', 'y-border');
+
+                    nv.utils.windowResize(chart.update);
+
+                    return chart;
+                });
+            }
+        </script>
+
+    </head>
+
+    <body onload=headerModification()>
+        <% include header %>
+            <div class="title">Please select any state to view data</div>
+            <div id="alert">Selected State: </div>
+            <div id="map" style="width: 500px; height: 300px"></div>
+            <div id="chart1">
+                <svg></svg>
+            </div>
+
+            <div id="chart2">
+                <svg></svg>
+            </div>
+
+            <% include footer%>
+    </body>
 
 </html>

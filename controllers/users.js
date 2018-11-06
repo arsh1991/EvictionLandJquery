@@ -101,6 +101,10 @@ module.exports.handleSignin = function(req,res) {
 };
 
 module.exports.logout = function(req,res) {
+
+    req.session.destroy();
+    req.session = null;
+
     res.render('../views/login',{
         message :"",
         error:""

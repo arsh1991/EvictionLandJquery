@@ -1,67 +1,80 @@
 <html lang="en-us">
 
-  <head>
-    <meta charset="UTF-8">
-    <title>Login to EvictionLand</title>
+    <head>
+        <meta charset="UTF-8">
+        <title>Login to EvictionLand</title>
 
-    <link rel="stylesheet" href="/stylesheets/home.css">
-    <script src="/javascripts/domModify.js"></script>
-    <link rel="stylesheet" href="/stylesheets/jquery-ui.css">
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/ui-darkness/jquery-ui.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script>
-      $(function() {
-        $("#accordion").accordion({
-          collapsible: true,
-          icons: {
-            "activeHeader": "ui-icon-minus"
-          }
-        });
-      });
-      $(function() {
-        $(".widget input[type=submit], .widget a").button();
-      });
-    </script>
+        <link rel="stylesheet" href="/stylesheets/home.css">
+        <link rel="stylesheet" href="/stylesheets/header.css">
+        <script src="/javascripts/domModify.js"></script>
+        <link rel="stylesheet" href="/stylesheets/jquery-ui.css">
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/ui-darkness/jquery-ui.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script>
+            $(function() {
+                $("#accordion").accordion({
+                    collapsible: true,
+                    icons: {
+                        "activeHeader": "ui-icon-minus"
+                    }
+                });
+            });
+            $(function() {
+                $(".widget input[type=submit], .widget a").button();
+            });
+        </script>
 
-  </head>
+    </head>
 
-  <body onload=headerModification()>
-    <% include header %>
-      <div class="mainBody">
-        <div class="box">
-          <div class="mainImage">
+    <body onload=headerModification()>
 
-            <div id="accordion" class="ui-accordion">
-              <h3 class="lab"> ABOUT EVICTIONLAND </h3>
-              <div>
-                <p>Evictionland is a data dashboard designed to view at evictions over time, map evictions in the United States, compare the eviction rates of different neighborhoods, cities, or states </p>
-              </div>
-              <h3>MAP & DATA</h3>
-              <div>
-                <p>Learn about american eviction rates by interating with the map</p>
-                <div class="widget">
-                  <a href="/map">Go to Maps</a>
-                </div>
-              </div>
-              <h3>EVICTION RANKINGS</h3>
-              <div>
-                <h3>See which cities rank the highest in eviction</h3>
-                <div class="widget">
-                  <a href="/rankings">Retrieve Data</a>
-                </div>
-              </div>
-              <h3>VIEW EVICTION DATA</h3>
-              <div>
-                <h3>Discover out how numerous removals happen in your community.</h3>
-                <div class="widget">
-                  <a href="/analyzeData">Retrieve Data</a>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="header">
+            <nav>
+                <ul id="navList">
+                    <li><span>EvictionLand</span></li>
+                    <li><a href="/dashboard">Dashboard</a></li>
+                    <li><a href="/rankings">Rankings</a></li>
+                    <li><a href="/ourteam">Contact</a></li>
+                    <li><a href="/users/logout">Logout</a></li>
+                </ul>
+            </nav>
         </div>
 
-      </div>
-      <% include footer %>
-  </body>
+        <div class="mainBody">
+            <div class="box">
+                <div class="mainImage">
+
+                    <div id="accordion" class="ui-accordion">
+                        <h3 class="lab"> ABOUT EVICTIONLAND </h3>
+                        <div>
+                            <p>Evictionland is a data dashboard designed to view at evictions over time, map evictions in the United States, compare the eviction rates of different neighborhoods, cities, or states </p>
+                        </div>
+                        <h3>MAP & DATA</h3>
+                        <div>
+                            <p>Learn about american eviction rates by interating with the map</p>
+                            <div class="widget">
+                                <a href="/map">Go to Maps</a>
+                            </div>
+                        </div>
+                        <h3>EVICTION RANKINGS</h3>
+                        <div>
+                            <h3>See which cities rank the highest in eviction</h3>
+                            <div class="widget">
+                                <a href="/rankings">Retrieve Data</a>
+                            </div>
+                        </div>
+                        <h3>VIEW EVICTION DATA</h3>
+                        <div>
+                            <h3>Discover out how numerous removals happen in your community.</h3>
+                            <div class="widget">
+                                <a href="/analyzeData">Retrieve Data</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <% include footer %>
+    </body>
