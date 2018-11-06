@@ -87,3 +87,31 @@ g.nv-y.nv-axis.nvd3-svg {
 #piechart{
     display: inline-block;
 }
+
+
+/* Legend Position Style */
+.legend {
+    position:absolute;
+    left:20px;
+    top:100px;
+}
+
+.axis text {
+    font: 10px sans-serif;
+}
+
+.axis line, .axis path {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+/* Legend Font Style */
+body {
+    font: 11px sans-serif;
+    background-color: #ffffff;
+}
+
+#map {
+    margin-top: 60px;
+}

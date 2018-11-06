@@ -1,141 +1,222 @@
 <!DOCTYPE html>
 <html>
 
-    <head>
-        <title>US Map</title>
-        <link rel="stylesheet" href="/stylesheets/map.css">
-        <link rel="stylesheet" href="/stylesheets/dashboard.css">
-        <script src="/javascripts/raphael.js"></script>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
-        <script src="/javascripts/color.jquery.js"></script>
-        <script src="/javascripts/jquery.usmap.js"></script>
-        <script src="/javascripts/domModify.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.2/d3.min.js" charset="utf-8"></script>
-        <link href="/stylesheets/nv.d3.min.css">
-        <script src="/stylesheets/nv.d3.min.js"></script>
+<head>
+    <title>US Map</title>
+    <link rel="stylesheet" href="/stylesheets/map.css">
+    <link rel="stylesheet" href="/stylesheets/dashboard.css">
+    <script src="/javascripts/raphael.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
+    <script src="/javascripts/color.jquery.js"></script>
+    <script src="/javascripts/jquery.usmap.js"></script>
+    <script src="/javascripts/domModify.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.2/d3.min.js" charset="utf-8"></script>
+    <link href="/stylesheets/nv.d3.min.css" >
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="/stylesheets/nv.d3.min.js"></script>
 
-        <script>
-            var BarChart;
-            $(document).ready(function() {
-                $('#map').usmap({
-                    'click': function(event, selected) {
-                        $('#alert')
-                            .text('Selected state: ' + selected.name)
-                            .stop()
-                            .css('backgroundColor', '#ff0')
-                            .animate({
-                                backgroundColor: '#ddd'
-                            }, 1000);
 
-                        $("#chart1").children().children().remove();
-                        $("#chart2").children().children().remove();
 
-                        const Url = "http://localhost:3000/dashboard/state?selectedState=" + selected.name;
-                        $.ajax({
-                            url: Url,
-                            success: function(res) {
-                                console.log(res.yearData);
-                                addBargraph(res.data);
-                                addLineGraph(res.yearData);
-                            }
-                        });
+</head>
+
+<body >
+<% include header %>
+
+
+<table>
+    <th><td colspan="2  "><h2><%=state%></h2></td></th>
+    <tr>
+        <td><div id="map"></div></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
+
+
+<!--<div id="chart1">-->
+<!--<svg></svg>-->
+<!--</div>-->
+
+<!--<div id="chart2">-->
+    <!--<svg></svg>-->
+<!--</div>-->
+<script>
+    <!--var yearDataForState = <%- JSON.stringify(yearData)%>-->
+    var mapDataForState = <%- JSON.stringify(mapData)%>
+    //console.log(mapDataForState);
+    addMap(mapDataForState);
+        // addLineGraph(yearDataForState);
+
+
+    function addLineGraph(lineChart) {
+        nv.addGraph(function() {
+            var chart = nv.models.lineChart()
+                .useInteractiveGuideline(true)
+                .height(300)
+                .showYAxis(true)
+                .showXAxis(true)
+            ;
+
+            chart.y(function (d) { return d.y; });
+            chart.xAxis
+                .axisLabel('Year');
+
+            chart.yAxis
+                .axisLabel('Number of evictions');
+
+            d3.select('#chart2 svg')
+                .datum(lineChart)
+                .transition().duration(500)
+                .call(chart)
+            ;
+
+            d3.select('#chart2 svg')
+                .append("text")
+                .attr("x", 250)
+                .attr("y", 310)
+                .attr("text-anchor", "middle")
+                .text("Comparision of evictions from 2000 to 2016")
+                .attr("class","Title");
+
+            d3.select('#chart2 .nv-y').attr('class', 'y-border');
+
+            nv.utils.windowResize(chart.update);
+
+            return chart;
+        });
+    }
+
+
+    function addMap(data){
+
+        //Width and height of map
+        var width = 660;
+        var height = 430;
+
+        var lowColor = '#f9f9f9'
+        var highColor = '#bc3029'
+
+        // D3 Projection
+        var projection = d3.geoAlbersUsa()
+            .translate([width / 2, height / 2]) // translate to center of screen
+            .scale([1000]); // scale things down so see entire US
+
+        // Define path generator
+        var path = d3.geoPath() // path generator that will convert GeoJSON to SVG paths
+            .projection(projection); // tell path generator to use albersUsa projection
+
+        //Create SVG element and append map to the SVG
+        var svg = d3.select("#map")
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height);
+
+
+            var dataArray = [];
+            for (var d = 0; d < data.length; d++) {
+                if(data[d].state != "USA"){
+                    dataArray.push(data[d].value != undefined ? data[d].value : 0)
+                }
+
+            }
+
+            var minVal = d3.min(dataArray)
+            var maxVal = d3.max(dataArray)
+            var ramp = d3.scaleLinear().domain([minVal,maxVal]).range([lowColor,highColor])
+
+            // Load GeoJSON data and merge with states data
+            d3.json("/data/us-states.json", function(json) {
+
+                // Loop through each state data value in the .csv file
+                for (var i = 0; i < data.length; i++) {
+
+                    // Grab State Name
+                    var dataState = data[i].state;
+
+                    // Grab data value
+                    var dataValue = data[i].value != undefined ? data[i].value : 0;
+
+                    // Find the corresponding state inside the GeoJSON
+                    for (var j = 0; j < json.features.length; j++) {
+                        var jsonState = json.features[j].properties.NAME;
+                        // console.log(dataState+"  "+jsonState);
+                        if (dataState == jsonState) {
+
+                            // Copy the data value into the JSON
+                            json.features[j].properties.value = dataValue;
+
+                            // Stop looking through the JSON
+                            break;
+                        }
                     }
-                });
+                }
+
+                // Bind the data to the SVG and create one path per GeoJSON feature
+                svg.selectAll("path")
+                    .data(json.features)
+                    .enter()
+                    .append("path")
+                    .attr("d", path)
+                    .style("stroke", "#fff")
+                    .style("stroke-width", "1")
+                    .style("fill", function(d) { return ramp(d.properties.value) });
+
+                // add a legend
+                var w = 140, h = 300;
+
+                var key = d3.select("body")
+                    .append("svg")
+                    .attr("width", w)
+                    .attr("height", h)
+                    .attr("class", "legend");
+
+                var legend = key.append("defs")
+                    .append("svg:linearGradient")
+                    .attr("id", "gradient")
+                    .attr("x1", "100%")
+                    .attr("y1", "0%")
+                    .attr("x2", "100%")
+                    .attr("y2", "100%")
+                    .attr("spreadMethod", "pad");
+
+                legend.append("stop")
+                    .attr("offset", "0%")
+                    .attr("stop-color", highColor)
+                    .attr("stop-opacity", 1);
+
+                legend.append("stop")
+                    .attr("offset", "100%")
+                    .attr("stop-color", lowColor)
+                    .attr("stop-opacity", 1);
+
+                key.append("rect")
+                    .attr("width", w - 100)
+                    .attr("height", h)
+                    .style("fill", "url(#gradient)")
+                    .attr("transform", "translate(0,10)");
+
+                var y = d3.scaleLinear()
+                    .range([h, 0])
+                    .domain([minVal, maxVal]);
+
+                var yAxis = d3.axisRight(y);
+
+                key.append("g")
+                    .attr("class", "y axis")
+                    .attr("transform", "translate(41,10)")
+                    .call(yAxis)
             });
 
-            addBargraph([]);
-            addLineGraph([]);
-
-            function addBargraph(BarChart) {
-                nv.addGraph(function() {
-
-                    var chart = nv.models.discreteBarChart()
-                        .x(function(d) {
-                            return d.label
-                        })
-                        .y(function(d) {
-                            return d.value
-                        })
-                        .staggerLabels(true)
-                        .showValues(true)
-                        .duration(250)
-                        .height(300)
-                        .width(300);;
+    }
 
 
-                    d3.select('#chart1 svg')
-                        .datum(BarChart)
-                        .call(chart);
-
-                    d3.select('#chart1 svg')
-                        .append("text")
-                        .attr("x", 150)
-                        .attr("y", 310)
-                        .attr("text-anchor", "middle")
-                        .text("Comparision of evictions")
-                        .attr("class", "Title")
+</script>
 
 
-                    nv.utils.windowResize(chart.update);
-                    return chart;
-                });
-            }
 
-            function addLineGraph(lineChart) {
-                nv.addGraph(function() {
-                    var chart = nv.models.lineChart()
-                        .useInteractiveGuideline(true)
-                        .height(300)
-                        .showYAxis(true)
-                        .showXAxis(true);
-
-                    chart.y(function(d) {
-                        return d.y;
-                    });
-                    chart.xAxis
-                        .axisLabel('Year');
-
-                    chart.yAxis
-                        .axisLabel('Number of evictions');
-
-                    d3.select('#chart2 svg')
-                        .datum(lineChart)
-                        .transition().duration(500)
-                        .call(chart);
-
-                    d3.select('#chart2 svg')
-                        .append("text")
-                        .attr("x", 250)
-                        .attr("y", 310)
-                        .attr("text-anchor", "middle")
-                        .text("Comparision of evictions from 2000 to 2016")
-                        .attr("class", "Title");
-
-                    d3.select('#chart2 .nv-y').attr('class', 'y-border');
-
-                    nv.utils.windowResize(chart.update);
-
-                    return chart;
-                });
-            }
-        </script>
-
-    </head>
-
-    <body onload=headerModification()>
-        <% include header %>
-            <div class="title">Please select any state to view data</div>
-            <div id="alert">Selected State: </div>
-            <div id="map" style="width: 500px; height: 300px"></div>
-            <div id="chart1">
-                <svg></svg>
-            </div>
-
-            <div id="chart2">
-                <svg></svg>
-            </div>
-
-            <% include footer%>
-    </body>
+</body>
 
 </html>

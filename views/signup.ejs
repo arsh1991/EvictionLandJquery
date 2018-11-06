@@ -38,6 +38,21 @@
                     <input class="email" name="email" type="text" />
                     <label class="error" id="emailError"></label>
                 </div>
+		<div class="inputFields">
+            <label class="feildName">State:</label>
+            <select class="phone" name="state">
+            <%
+              console.log(states);
+              for(state in states){
+            %>
+              <option value=<%=states[state]%>><%=states[state]%></option>
+              <%
+              }
+
+              %>
+            </select>
+            <label class="error" id="stateError"></label>
+          </div>
 
                 <div class="inputFields">
                     <label class="feildName">Password:</label>

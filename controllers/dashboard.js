@@ -15,26 +15,24 @@ module.exports.fetchData = function(req,res) {
 };
 
 module.exports.fetchDataByState = function(req,res) {
-    const selectedState = req.query.selectedState;
+    const selectedState = req.session.userSession[0].state;
+    console.log(selectedState);
     const cases = db.get('USData');
     var dataJsonArray = [];
     var dataJsonArray1 = [];
-    var data = [ {key: "Cumulative Return",  values :[]} ];
     var data_allYear = [ {key: "Number of evictions",  values :[]} ];
 
-    cases.find({
-        $and : [
-            { "year":2016 },
-            { $or : [ {"name": selectedState}, {"name": "USA"}] }
-        ]
-    }).then((results)=>{
+    cases.find(
+            { "year":2016 }
+
+    ).then((results)=>{
         for(var i= 0; i < results.length; i++){
             dataJsonArray.push({
-                label: results[i].name,
+                state: results[i].name,
                 value: results[i].evictions
             });
         }
-        data[0]["values"] = dataJsonArray;
+
 
         cases.find({"name": selectedState}).then((results1)=>{
                 for(var i= 0; i < results1.length; i++){
@@ -44,7 +42,8 @@ module.exports.fetchDataByState = function(req,res) {
                 });
             }
             data_allYear[0]["values"] = dataJsonArray1;
-            res.send({'data':data, 'yearData':data_allYear});
+            res.render('../views/dashboard', {'mapData':dataJsonArray, 'yearData':data_allYear, 'state': selectedState});
+
         });
 
 

@@ -19,7 +19,14 @@ module.exports.login = function(req,res) {
  * Get Signup Page
  */
 module.exports.signup = function(req,res) {
-    res.render('../views/signup');
+    const collection = db.get('states');
+    collection.find().then((data) =>{
+
+        res.render('../views/signup', {
+            states: data[0].states
+        });
+    })
+
 };
 
 /*
@@ -35,7 +42,8 @@ module.exports.handleSignup = function(req,res) {
                     userName: req.body.userName,
                     email: req.body.email,
                     password: req.body.password,
-                    phone: req.body.phone
+                    phone: req.body.phone,
+                    state: req.body.state
                 };
 
     console.log("Inside handleSignup");
