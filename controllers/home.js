@@ -1,6 +1,16 @@
 module.exports.home = function(req,res) {
-    console.log("session data on home : ", req.session.userSession);
-    res.render('../views/home');
+
+    console.log(req.session.userSession);
+
+    if(!req.session.userSession) {
+        res.render('../views/login',{
+            message : "Please login to go to Homepage",
+            error: "You are not logged in."
+        });
+    }
+    else {
+        res.render('../views/home');
+    }
 };
 
 module.exports.index = function(req,res) {
@@ -8,7 +18,12 @@ module.exports.index = function(req,res) {
 };
 
 module.exports.ourteam = function(req,res) {
-    res.render('../views/ourteam');
+    if(req.session.userSession[0].email) {
+        res.render('../views/ourteam');
+    }
+    else {
+        res.render('../views/login');
+    }
 };
 
 module.exports.shashank = function(req,res) {

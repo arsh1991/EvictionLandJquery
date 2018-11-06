@@ -36,7 +36,7 @@ app.set('view engine', 'ejs');
 app.use(require('express-session')({
   secret: 'cmpe280',
   cookie: {
-    maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
+    maxAge: 1000 * 60 * 60
   },
   store: store,
   resave: true,
