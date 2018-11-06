@@ -19,8 +19,7 @@ module.exports.fetchDataByState = function(req,res) {
     console.log(selectedState);
     const cases = db.get('USData');
     var dataJsonArray = [];
-    var dataJsonArray1 = [];
-    var data_allYear = [ {key: "Number of evictions",  values :[]} ];
+    var dataAllYearsOfState = [];
 
     cases.find(
             { "year":2016 }
@@ -36,13 +35,12 @@ module.exports.fetchDataByState = function(req,res) {
 
         cases.find({"name": selectedState}).then((results1)=>{
                 for(var i= 0; i < results1.length; i++){
-            dataJsonArray1.push({
-                    x: results1[i].year,
-                    y: results1[i].evictions
+            dataAllYearsOfState.push({
+                    year: results1[i].year,
+                    value: results1[i].evictions
                 });
             }
-            data_allYear[0]["values"] = dataJsonArray1;
-            res.render('../views/dashboard', {'mapData':dataJsonArray, 'yearData':data_allYear, 'state': selectedState});
+            res.render('../views/dashboard', {'mapData':dataJsonArray, 'yearData':dataAllYearsOfState, 'state': selectedState});
 
         });
 
