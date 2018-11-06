@@ -230,9 +230,7 @@ module.exports.handleAddUSDocument = function (req, res) {
         then(() => {
             db.close();
     })
-    })
-        ;
-
+    });
     } else {
         res.render('../views/landing', {
             message: "",
