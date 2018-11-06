@@ -60,33 +60,33 @@ g.nv-y.nv-axis.nvd3-svg {
     margin: 30px;
 }
 
-.nv-axisMaxMin{
-    font-size: smaller;
-}
+/*.nv-axisMaxMin{*/
+    /*font-size: smaller;*/
+/*}*/
 
-#linechart svg {
-    border: 1px solid black;
-    margin: 30px;
-    padding: 30px;
-    height: 325px;
-    width: 325px;
-}
+/*#linechart svg {*/
+    /*border: 1px solid black;*/
+    /*margin: 30px;*/
+    /*padding: 30px;*/
+    /*height: 325px;*/
+    /*width: 325px;*/
+/*}*/
 
-#linechart{
-    display: inline-block;
-}
+/*#linechart{*/
+    /*display: inline-block;*/
+/*}*/
 
-#piechart svg {
-    border: 1px solid black;
-    margin: 30px;
-    padding: 30px;
-    height: 325px;
-    width: 325px;
-}
+/*#piechart svg {*/
+    /*border: 1px solid black;*/
+    /*margin: 30px;*/
+    /*padding: 30px;*/
+    /*height: 325px;*/
+    /*width: 325px;*/
+/*}*/
 
-#piechart{
-    display: inline-block;
-}
+/*#piechart{*/
+    /*display: inline-block;*/
+/*}*/
 
 
 /* Legend Position Style */
@@ -114,4 +114,41 @@ body {
 
 #map {
     margin-top: 60px;
+}
+
+
+
+.axis {
+    font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #D4D8DA;
+    stroke-width: 2px;
+    shape-rendering: crispEdges;
+}
+
+.line {
+    fill: none;
+    stroke: #6F257F;
+    stroke-width: 5px;
+}
+
+.overlay {
+    fill: none;
+    pointer-events: all;
+}
+
+.focus circle {
+    fill: #F1F3F3;
+    stroke: #6F257F;
+    stroke-width: 5px;
+}
+
+.hover-line {
+    stroke: #6F257F;
+    stroke-width: 2px;
+    stroke-dasharray: 3,3;
 }
