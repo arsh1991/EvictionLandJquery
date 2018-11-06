@@ -9,10 +9,15 @@ const db = monk(url);
  * A user can login to the EvictionLand by hitting /users/login
  */
 module.exports.login = function(req,res) {
-    res.render('../views/login',{
-        message :"",
-        error:""
-    });
+    if(!req.session.userSession) {
+        res.render('../views/login',{
+            message :"",
+            error:""
+        });
+    }
+    else {
+        res.redirect('/home');
+    }
 };
 
 /*

@@ -1,39 +1,3 @@
-function headerModification(){
-
-    const path = window.location.href;
-
-    const pathArray = path.split('/');
-
-    const link = pathArray[pathArray.length-1];
-
-    if(link === '') {
-        let ulist = document.getElementById('navList');
-        ulist.removeChild(ulist.childNodes[6]);
-        ulist.removeChild(ulist.childNodes[6]);
-        ulist.removeChild(ulist.childNodes[6]);
-        ulist.removeChild(ulist.childNodes[6]);
-        ulist.removeChild(ulist.childNodes[6]);
-        ulist.removeChild(ulist.childNodes[6]);
-    }
-
-    if(link.includes("state")) {
-        let ulist = document.getElementById('navList');
-        ulist.removeChild(ulist.childNodes[4]);
-        ulist.removeChild(ulist.childNodes[4]);
-        ulist.removeChild(ulist.childNodes[4]);
-        ulist.removeChild(ulist.childNodes[4]);
-        ulist.removeChild(ulist.childNodes[4]);
-        ulist.removeChild(ulist.childNodes[4]);
-        ulist.removeChild(ulist.childNodes[4]);
-        ulist.removeChild(ulist.childNodes[4]);
-    }
-
-    if(path.includes('rankings')) {
-      var nums = document.getElementById('numbers');
-
-      nums.innerText = window.bars.size()+ " ";
-    }
-}
 
 var Letter = function(v) {
     measureDiv.innerHTML = v;
