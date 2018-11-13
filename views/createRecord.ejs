@@ -1,0 +1,47 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Create new eviction record</title>
+    <link rel="stylesheet" href="/stylesheets/form.css">
+    <link rel="stylesheet" href="/stylesheets/header.css">
+    <script src="/javascripts/domModify.js"></script>
+    <script src="/javascripts/loginValidations.js"></script>
+    <script src="/external/jquery/jquery.js"></script>
+    <script src="/javascripts/jquery-ui.js"></script>
+</head>
+<body onload="headerModification()">
+<% include header %>
+<div>
+    <div class="message"><label><%=message %></label></div>
+    <h2>Create new Eviction Record</h2>
+
+    <form action="/create/new" method="post">
+        State:
+        <input type="text" name="name" value="">
+        <br>
+        Year:
+        <input type="number" name="year" value="">
+        <br>
+        Number of Evictions:
+        <input type="number" name="evictions" value="">
+        <br>
+        Eviction Rate:
+        <input type="number" name="evictionRate" value="">
+        <br>
+        Eviction Filing Rate:
+        <input type="number" name="evictionFilingRate" value="">
+        <br>
+        Population:
+        <input type="number" name="population" value="">
+        <br><br>
+        <input type="submit" value="Submit">
+    </form>
+
+
+</div>
+
+
+
+<% include footer %>
+</body>
+</html>

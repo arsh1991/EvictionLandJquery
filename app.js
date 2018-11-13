@@ -15,6 +15,7 @@ var dashboard = require('./routes/dashboard');
 var multer = require('multer');
 var chartRouter = require('./routes/linechart');
 var piechartRouter = require('./routes/piechart');
+var createRouter = require('./routes/create');
 var assert = require('assert');
 var app = express();
 
@@ -61,3 +62,4 @@ app.use('/dashboard', dashboard);
 app.use('/linechart', chartRouter);
 app.use('/piechart', piechartRouter);
 module.exports = app;
+app.use('/create', createRouter);
