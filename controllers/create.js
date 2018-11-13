@@ -2,10 +2,6 @@ const monk = require('monk');
 const url = 'localhost:27017/cmpe280';
 const db = monk(url);
 
-// modules.exports.createEvictionRecord = function (req, res) {
-//
-// }
-
 module.exports.home = function (req, res) {
     res.render('../views/createRecord', {
         message: "",
@@ -49,7 +45,6 @@ module.exports.createNew = function(req, res){
 
         console.log(doc);
         collection.insert(doc).then((success) => {
-            console.log("signup successfull");
             console.log("Data inserted into the database.");
             res.render('../views/createRecord', {
                 message : "Successfully inserted new record",
@@ -57,7 +52,6 @@ module.exports.createNew = function(req, res){
             });
         }).catch((err) => {
             console.log("Error occured while inserting data into the database");
-            // res.render('../views/signup');
         }).then(() => {
             db.close();
         })
