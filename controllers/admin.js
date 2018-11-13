@@ -12,11 +12,32 @@ module.exports.login = function (req, res) {
 };
 
 module.exports.home = function (req, res) {
-    res.render('../views/landing', {
+    const cases = db.get('USData');
+    cases.find().then((results) =>{
+        res.render('../views/landing', {
         message: "",
         error: "",
         errorMsg: "",
-        userdata: []
+        userdata: [],
+        evictiondata: results
+    });
+    })
+    ;
+
+};
+
+module.exports.showEvictionByState = function (req, res) {
+    const state = req.query.state;
+    console.log("Search: " + state);
+    const cases = db.get('USData');
+    cases.find({"name" : state}).then((results) => {
+        res.render('../views/landing', {
+            message: "",
+            error: "",
+            errorMsg: "",
+            userdata: [],
+            evictiondata: results
+        });
     });
 };
 
@@ -62,7 +83,7 @@ module.exports.handleAddDocument = function (req, res) {
             message: "Data Inserted successfully",
             error: "",
             errorMsg: "",
-            "userdata" : []
+            "userdata": []
         });
     }).
         catch((err) => {
@@ -71,7 +92,7 @@ module.exports.handleAddDocument = function (req, res) {
             message: "",
             error: "Backend Error: Unable to insert data into database",
             errorMsg: "",
-            "userdata" : []
+            "userdata": []
         });
     }).
         then(() => {
@@ -85,7 +106,7 @@ module.exports.handleAddDocument = function (req, res) {
             message: "",
             error: "File is not in the required format",
             errorMsg: "",
-            "userdata" : []
+            "userdata": []
         });
     }
 };
@@ -132,14 +153,17 @@ module.exports.searchUser = function (req, res) {
 };
 
 module.exports.deleteUser = function (req, res) {
-    var email =  req.body.user;
+    var email = req.body.user;
     const collection = db.get('users');
 
-    collection.find({ "email" : email}).then((data) =>
+    collection.find({"email": email}).then((data) =>
     {
-        if (data.length === 0) {
+        if(data.length === 0
+)
+    {
 
-        res.send({status:"ok",
+        res.send({
+            status: "ok",
             'data': "",
             'userdata': [],
             'selected': email,
@@ -148,56 +172,60 @@ module.exports.deleteUser = function (req, res) {
             errorMsg: "User not found"
         });
     }
-    else
+else
     {
         collection.remove({"email": email}).then((data) =>
         {
-                res.render('../views/landing', {
-                'userdata': data,
-                'selected': email,
-                message: "",
-                error: "",
-                errorMsg: "user deleted"
-            });
+            res.render('../views/landing', {
+            'userdata': data,
+            'selected': email,
+            message: "",
+            error: "",
+            errorMsg: "user deleted"
         });
+    })
+        ;
     }
-    });
+})
+    ;
 };
 
 module.exports.updateUser = function (req, res) {
-    console.log("user"+req.body.email);
-    var email =  req.body.email;
+    console.log("user" + req.body.email);
+    var email = req.body.email;
     const collection = db.get('users');
 
-    collection.find({ "email" : email}).then((data) =>
+    collection.find({"email": email}).then((data) =>
     {
-        console.log("results: "+data);
-        if (data.length === 0) {
-            res.send({status:"ok",
-                'data': "",
-                'userdata': [],
-                'selected': email,
-                message: "",
-                error: "",
-                errorMsg: "User not found"
-            });
-        }
-        else
+        console.log("results: " + data);
+    if (data.length === 0) {
+        res.send({
+            status: "ok",
+            'data': "",
+            'userdata': [],
+            'selected': email,
+            message: "",
+            error: "",
+            errorMsg: "User not found"
+        });
+    }
+    else {
+        var newvalues = {$set: {userName: req.body.username, phone: req.body.number}};
+        collection.update({"email": email}, newvalues).then((data) =>
         {
-            var newvalues = { $set: {userName: req.body.username, phone: req.body.number } };
-            collection.update({"email": email}, newvalues).then((data) =>
-            {
-                console.log(data);
-                res.render('../views/landing', {
-                    'userdata': [],
-                    'selected': email,
-                    message: "",
-                    error: "",
-                    errorMsg: "user updated"
-                 });
-            });
-        }
-    });
+            console.log(data);
+        res.render('../views/landing', {
+            'userdata': [],
+            'selected': email,
+            message: "",
+            error: "",
+            errorMsg: "user updated"
+        });
+    })
+        ;
+    }
+})
+    ;
 };
 
 
@@ -205,7 +233,7 @@ module.exports.handleAddUSDocument = function (req, res) {
     var data = xlsx.readFile('./public/uploads/' + req.file.filename).Sheets.states;
     var statesJsonArray = xlsx.utils.sheet_to_json(data);
     console.log(statesJsonArray);
-    if (statesJsonArray.length != 0 ) {
+    if (statesJsonArray.length != 0) {
         const cases = db.get('USData');
         cases.drop().then(() => {
             cases.insert(statesJsonArray).then((dataInserted) => {
@@ -215,7 +243,7 @@ module.exports.handleAddUSDocument = function (req, res) {
             message: "Data Inserted successfully",
             error: "",
             errorMsg: "",
-            "userdata" : []
+            "userdata": []
         });
     }).
         catch((err) => {
@@ -224,19 +252,20 @@ module.exports.handleAddUSDocument = function (req, res) {
             message: "",
             error: "Backend Error: Unable to insert data into database",
             errorMsg: "",
-            "userdata" : []
+            "userdata": []
         });
     }).
         then(() => {
             db.close();
     })
-    });
+    })
+        ;
     } else {
         res.render('../views/landing', {
             message: "",
             error: "File is not in the required format",
             errorMsg: "",
-            "userdata" : []
+            "userdata": []
         });
     }
 };

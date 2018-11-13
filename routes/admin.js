@@ -32,4 +32,6 @@ router.post('/updateUser', adminController.updateUser);
 
 router.post('/addUSData', upload.single("USDatafile"), adminController.handleAddUSDocument);
 
+router.get('/showEvictionByState', adminController.showEvictionByState);
+
 module.exports = router;
