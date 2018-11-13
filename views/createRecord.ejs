@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="/stylesheets/form.css">
     <link rel="stylesheet" href="/stylesheets/header.css">
     <script src="/javascripts/domModify.js"></script>
-    <script src="/javascripts/loginValidations.js"></script>
+    <script src="/javascripts/evictionFormValidation.js"></script>
     <script src="/external/jquery/jquery.js"></script>
     <script src="/javascripts/jquery-ui.js"></script>
 </head>
@@ -15,24 +15,34 @@
     <div class="message"><label><%=message %></label></div>
     <h2>Create new Eviction Record</h2>
 
-    <form action="/create/new" method="post">
+    <form name="evictionForm" action="/create/new" method="post" onsubmit="return validateEvictionForm()">
         State:
         <input type="text" name="name" value="">
+        <label class="error" id="NameError"></label>
         <br>
         Year:
         <input type="number" name="year" value="">
+        <label class="error" id="yearError"></label>
         <br>
         Number of Evictions:
         <input type="number" name="evictions" value="">
+        <label class="error" id="evictionError"></label>
+        <br>
+        Number of Evictions Filed:
+        <input type="number" name="evictionFilings" value="">
+        <label class="error" id="evictionFilingError"></label>
         <br>
         Eviction Rate:
-        <input type="number" name="evictionRate" value="">
+        <input type="text" name="evictionRate" value="">
+        <label class="error" id="evictionRateError"></label>
         <br>
         Eviction Filing Rate:
-        <input type="number" name="evictionFilingRate" value="">
+        <input type="text" name="evictionFilingRate" value="">
+        <label class="error" id="evictionFilingRateError"></label>
         <br>
         Population:
         <input type="number" name="population" value="">
+        <label class="error" id="populationError"></label>
         <br><br>
         <input type="submit" value="Submit">
     </form>
