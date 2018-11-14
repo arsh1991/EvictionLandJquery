@@ -4,6 +4,7 @@
 <head>
     <link href="/stylesheets/jquery-ui.css" rel="stylesheet">
     <link href="/stylesheets/admin.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="/javascripts/domModify.js"></script>
@@ -81,6 +82,34 @@
                 });
             }
         }
+
+        function deleteEntry(id) {
+            var data = {
+                id:id
+            };
+            const Url = "http://localhost:3000/admin/deleteEntry";
+            $.ajax({
+                type: "DELETE",
+                url: Url,
+                data: data,
+                success: function (res) {
+                    evictiondata = res.evictiondata;
+                    $( "#dataTable" ).load( "home #dataTable" );
+                    // $("#tableMessage").html("Entry deleted Successfully");
+                }
+            });
+
+        }
+
+        function showEntry(id) {
+            const URL = "http://localhost:3000/create/showEntry?id="+id;
+            location.href = URL;
+        }
+
+        function updateEntry(id) {
+            const URL = "http://localhost:3000/create/updateEntry?id="+id;
+            location.href = URL;
+        }
     </script>
 </head>
 
@@ -98,10 +127,14 @@
             var evictiondata;
             evictiondata = <%- JSON.stringify(evictiondata) %>;
         </script>
+        <label id="tableMessage"><label>
         <div id="evictionsearchResult">
+
             <% if(evictiondata) { %>
-            <table class="">
+            <table class="" id="dataTable">
                 <tr>
+                    <th></th>
+                    <th></th>
                     <th>State</th>
                     <th>Year</th>
                     <th>Population</th>
@@ -110,10 +143,15 @@
                     <th>Median Household Income</th>
                     <th>Median Property Value</th>
                     <th>Rent Burden</th>
+                    <th></th>
                 </tr>
                 <% for (var i = 0; i < evictiondata.length; i++) {
+                    var docId = evictiondata[i]._id.toString();
+
                 %>
                 <tr>
+                    <td><button class="actionButton" id="<%=docId%>" onclick="showEntry(this.id)"><i class="material-icons">open_in_browser</i></button></td>
+                    <td><button class="actionButton" id="<%=docId%>" onclick="updateEntry(this.id)"><i class="material-icons">border_color</i></button></td>
                     <td class="">
                         <%= evictiondata[i].name %>
                     </td>
@@ -138,6 +176,7 @@
                     <td class="">
                         <%= evictiondata[i]['rent-burden'] %>
                     </td>
+                    <td><button class="actionButton" id="<%=docId%>" onclick="deleteEntry(this.id)"><i class="material-icons">cancel</i></button></td>
                 </tr>
                 <% } %>
             </table>

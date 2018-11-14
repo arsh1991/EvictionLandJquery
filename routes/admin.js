@@ -34,4 +34,6 @@ router.post('/addUSData', upload.single("USDatafile"), adminController.handleAdd
 
 router.get('/showEvictionByState', adminController.showEvictionByState);
 
+router.delete('/deleteEntry', adminController.deleteEntry);
+
 module.exports = router;

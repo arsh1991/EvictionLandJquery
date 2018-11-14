@@ -10,6 +10,52 @@ module.exports.home = function (req, res) {
     });
 };
 
+module.exports.showEntry = function (req, res) {
+    const collection = db.get('USData');
+    const id = req.query.id;
+    console.log(id);
+
+    collection.findOne({_id:id}).then((doc) =>{
+        res.render('../views/showOrUpdateEntry', {
+            message: "",
+            error: "",
+            errorMsg: "",
+            data:doc,
+            update:false
+        });
+    });
+
+
+};
+
+
+module.exports.updateEntry = function (req, res) {
+    const collection = db.get('USData');
+    const id = req.query.id;
+    console.log(id);
+
+    collection.findOne({_id:id}).then((doc) =>{
+        res.render('../views/showOrUpdateEntry', {
+            message: "",
+            error: "",
+            errorMsg: "",
+            data:doc,
+            update:true
+        });
+    });
+
+
+};
+
+
+module.exports.processupdateEntry = function (req, res) {
+    const collection = db.get('USData');
+
+    //Update the record
+
+
+};
+
 module.exports.createNew = function(req, res){
     const collection = db.get('USData');
     let doc = {

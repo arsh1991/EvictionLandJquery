@@ -14,6 +14,7 @@ module.exports.login = function (req, res) {
 module.exports.home = function (req, res) {
     const cases = db.get('USData');
     cases.find().then((results) =>{
+        console.log(typeof results[0]._id.toString());
         res.render('../views/landing', {
         message: "",
         error: "",
@@ -21,8 +22,7 @@ module.exports.home = function (req, res) {
         userdata: [],
         evictiondata: results
     });
-    })
-    ;
+    });
 
 };
 
@@ -268,4 +268,23 @@ module.exports.handleAddUSDocument = function (req, res) {
             "userdata": []
         });
     }
+};
+
+
+module.exports.deleteEntry = function (req, res) {
+    let id = req.body.id;
+
+    const cases = db.get('USData');
+    cases.findOneAndDelete({_id:id}).then((doc) =>{
+        cases.find().then((results) =>{
+            res.send(200, {
+                message: "Success",
+                error: "",
+                errorMsg: "",
+                userdata: [],
+                evictiondata: results
+            });
+        });
+    });
+
 };

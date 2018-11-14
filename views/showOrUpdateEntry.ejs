@@ -1,0 +1,91 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Eviction record</title>
+    <link rel="stylesheet" href="/stylesheets/form.css">
+    <link rel="stylesheet" href="/stylesheets/header.css">
+    <script src="/javascripts/evictionFormValidation.js"></script>
+    <script>
+        function sendUpdateRequest() {
+            var docId = <%-data["_id"].toString()%>
+            var state = document.getElementsByName("name");
+            var year = document.getElementsByName("year");
+            var population = document.getElementsByName("population");
+            var povRate = document.getElementsByName("povRate");
+            var medGrossRent = document.getElementsByName("MedGrossRent");
+            var medHouseInc = document.getElementsByName("MedHouseInc");
+            var medianPropValue = document.getElementsByName("MedianPropValue");
+            var rentBurden = document.getElementsByName("RentBurden");
+
+            var data = {
+                docId:docId,
+                state:state,
+                year:year,
+                population:population,
+                povRate:povRate,
+                medGrossRent:medGrossRent,
+                medHouseInc:medHouseInc,
+                medianPropValue:medianPropValue,
+                rentBurden:rentBurden
+            };
+            const Url = "http://localhost:3000/create/processUpdateEntry";
+            $.ajax({
+                type: "PUT",
+                url: Url,
+                data: data,
+                success: function (res) {
+                    evictiondata = res.evictiondata;
+                    $( "#dataTable" ).load( "home #dataTable" );
+                    // $("#tableMessage").html("Entry deleted Successfully");
+                }
+            });
+
+        }
+    </script>
+</head>
+<body onload="headerModification()">
+<% include header %>
+<div>
+    <div class="message"><label><%=message %></label></div>
+    <h2>Eviction Record</h2>
+
+    <form name="evictionForm" action="" method="" onsubmit="return validateEvictionForm()">
+        State:
+        <input type="text" name="name" value="<%=data["name"]%>" <%if(update==false){%>disabled<%}%>>
+        <label class="error" id="NameError"></label>
+        <br>
+        Year:
+        <input type="number" name="year" value="<%=data["year"]%>" <%if(update==false){%>disabled<%}%>>
+        <label class="error" id="yearError"></label>
+        <br>
+        Population:
+        <input type="number" name="population" value="<%=data["population"]%>" <%if(update==false){%>disabled<%}%>>
+        <label class="error" id="populationError"></label>
+        <br>
+        Poverty Rate:
+        <input type="number" name="povRate" value="<%=data["poverty-rate"]%>" <%if(update==false){%>disabled<%}%>>
+        <label class="error" id="povRateError"></label>
+        <br>
+        Median Gross Rent:
+        <input type="number" name="MedGrossRent" value="<%=data["median-gross-rent"]%>" <%if(update==false){%>disabled<%}%>>
+        <label class="error" id="MedGrossRentError"></label>
+        <br>
+        Median Household Income:
+        <input type="text" name="MedHouseInc" value="<%=data["median-household-income"]%>" <%if(update==false){%>disabled<%}%>>
+        <label class="error" id="MedHouseIncError"></label>
+        <br>
+        Median Property Value:
+        <input type="text" name="MedianPropValue" value="<%=data["median-property-value"]%>" <%if(update==false){%>disabled<%}%>>
+        <label class="error" id="MedianPropError"></label>
+        <br>
+        Rent Burden:
+        <input type="text" name="RentBurden" value="<%=data["rent-burden"]%>" <%if(update==false){%>disabled<%}%>>
+        <label class="error" id="RentBurdenError"></label>
+        <br>
+        <br>
+        <input type="button" value="Update" onclick="sendUpdateRequest()" <%if(update==false){%>hidden<%}%>>
+    </form>
+</div>
+<% include footer %>
+</body>
+</html>

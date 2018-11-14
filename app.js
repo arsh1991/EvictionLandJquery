@@ -19,20 +19,20 @@ var createRouter = require('./routes/create');
 var assert = require('assert');
 var app = express();
 
-var store = new MongoDBStore({
-  uri: 'mongodb://localhost:27017/cmpe280',
-  collection: 'sessionsData'
-});
+// var store = new MongoDBStore({
+//   uri: 'mongodb://localhost:27017/cmpe280',
+//   collection: 'sessionsData'
+// });
 
-store.on('connected', function() {
-    store.client; // The underlying MongoClient object from the MongoDB driver
-});
-
-// Catch errors
-store.on('error', function(error) {
-  assert.ifError(error);
-  assert.ok(false);
-});
+// store.on('connected', function() {
+//     store.client; // The underlying MongoClient object from the MongoDB driver
+// });
+//
+// // Catch errors
+// store.on('error', function(error) {
+//   assert.ifError(error);
+//   assert.ok(false);
+// });
 
 app.set('view engine', 'ejs');
 
@@ -41,7 +41,7 @@ app.use(require('express-session')({
   cookie: {
     maxAge: 1000 * 60 * 60
   },
-  store: store,
+  // store: store,
   resave: true,
   saveUninitialized: true
 }));
