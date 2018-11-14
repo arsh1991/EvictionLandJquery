@@ -6,8 +6,7 @@ module.exports.home = function (req, res) {
     res.render('../views/createRecord', {
         message: "",
         error: "",
-        errorMsg: "",
-        userdata: []
+        errorMsg: ""
     });
 };
 
@@ -18,18 +17,18 @@ module.exports.createNew = function(req, res){
         "year": parseInt(req.body.year, 10),
         "name":req.body.name,
         "population":parseInt(req.body.population,10),
-        "evictionRate":parseFloat(req.body.evictionRate),
-        "evictions":parseInt(req.body.evictions,10),
-        "eviction-filings":parseInt(req.body.evictionFilings,10),
-        "evictionFilingRate":parseFloat(req.body.evictionFilingRate),
+        "evictionRate":parseFloat("2.4"),
+        "evictions":parseInt("103050",10),
+        "eviction-filings":parseInt("103300",10),
+        "evictionFilingRate":parseFloat("2.57"),
         "parent-location": "USA",
-        "poverty-rate":parseFloat("14.22"),
+        "poverty-rate":parseFloat(req.body.povRate),
         "renter-occupied-households":parseInt("4158366",10),
         "pct-renter-occupied":parseFloat("43.09"),
-        "median-gross-rent":parseInt("1116",10),
-        "median-household-income":parseInt("47493",10),
-        "median-property-value":parseInt("211500",10),
-        "rent-burden":parseFloat("27.7"),
+        "median-gross-rent":parseInt(req.body.MedGrossRent,10),
+        "median-household-income":parseInt(req.body.MedHouseInc,10),
+        "median-property-value":parseInt(req.body.MedianPropValue,10),
+        "rent-burden":parseFloat(req.body.RentBurden),
         "white":parseFloat("46.7"),
         "afam":parseFloat("6.44"),
         "hispanic":parseFloat("32.38"),
@@ -41,7 +40,7 @@ module.exports.createNew = function(req, res){
         "low-flag":parseInt("1",10),
         "imputed":parseInt("0",10),
         "subbed":parseInt("0",10)
-    }
+    };
 
         console.log(doc);
         collection.insert(doc).then((success) => {
@@ -54,6 +53,6 @@ module.exports.createNew = function(req, res){
             console.log("Error occured while inserting data into the database");
         }).then(() => {
             db.close();
-        })
+        });
 
-}
+};

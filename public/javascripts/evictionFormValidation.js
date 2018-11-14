@@ -2,38 +2,43 @@ function validateEvictionForm() {
     let validFlag = true;
     const name = document.forms["evictionForm"]["name"].value;
     const year = document.forms["evictionForm"]["year"].value;
-    const evictions = document.forms["evictionForm"]["evictions"].value;
-    const evictionFiling = document.forms["evictionForm"]["evictionFilings"].value;
-    const evictionRate = document.forms["evictionForm"]["evictionRate"].value;
-    const evictionFilingRate = document.forms["evictionForm"]["evictionFilingRate"].value;
+    const povRate = document.forms["evictionForm"]["povRate"].value;
+    const MedGrossRent = document.forms["evictionForm"]["MedGrossRent"].value;
+    const MedHouseInc = document.forms["evictionForm"]["MedHouseInc"].value;
+    const MedianPropValue = document.forms["evictionForm"]["MedianPropValue"].value;
     const Population = document.forms["evictionForm"]["population"].value;
+    const RentBurden = document.forms["evictionForm"]["RentBurden"].value;
 
     if (name === '') {
-        document.getElementById("NameError").innerHTML = "State Name can not be empty";
+        document.getElementById("NameError").innerHTML = "State Name cannot be empty";
         validFlag = false;
     }
     if (year === '') {
-        document.getElementById("yearError").innerHTML = "Year can not be empty";
+        document.getElementById("yearError").innerHTML = "Year cannot be empty";
         validFlag = false;
     }
-    if (evictions === '') {
-        document.getElementById("evictionError").innerHTML = "Evictions can not be empty";
+    if (povRate === '') {
+        document.getElementById("povRateError").innerHTML = "Poverty Rate  cannot be empty";
         validFlag = false;
     }
-    if (evictionFiling === '') {
-        document.getElementById("evictionFilingError").innerHTML = "Eviction Filing can not be empty";
+    if (MedGrossRent === '') {
+        document.getElementById("MedGrossRentError").innerHTML = "Median Gross Rent cannot be empty";
         validFlag = false;
     }
-    if (evictionRate === '') {
-        document.getElementById("evictionRateError").innerHTML = "Eviction Rate can not be empty";
+    if (MedHouseInc === '') {
+        document.getElementById("MedHouseIncError").innerHTML = "Median House Income cannot be empty";
         validFlag = false;
     }
-    if (evictionFilingRate === '') {
-        document.getElementById("evictionFilingRateError").innerHTML = "Eviction Filing Rate can not be empty";
+    if (MedianPropValue === '') {
+        document.getElementById("MedianPropValueError").innerHTML = "Median Property Value cannot be empty";
         validFlag = false;
     }
     if (Population === '') {
-        document.getElementById("populationError").innerHTML = "Population can not be empty";
+        document.getElementById("populationError").innerHTML = "Population cannot be empty";
+        validFlag = false;
+    }
+    if (RentBurden === '') {
+        document.getElementById("RentBurdenError").innerHTML = "Rent Burden cannot be empty";
         validFlag = false;
     }
 
