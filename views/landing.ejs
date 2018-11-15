@@ -122,6 +122,12 @@
         <div class="evictionFilter">
             Search eviction <input name="stateEntered" id="stateEntered" placeholder="State">
             <button class="SearchEviction" id="SearchEviction" onclick="SearchEviction(event)">Search</button>
+            <br/>
+            <br/>
+            <form action="/create/" method="get">
+                Create New Record
+                <button type="submit" >Create Record</button>
+            </form>
         </div>
         <script>
             var evictiondata;
@@ -270,10 +276,6 @@
 
             </div>
         </div>
-        <form action="/create" method="get">
-            <h4> Create New Eviction Record</h4>
-            <button type="submit" >Create Record</button>
-        </form>
     </div>
 </div>
 

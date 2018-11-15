@@ -7,7 +7,18 @@
     <script src="/javascripts/evictionFormValidation.js"></script>
 </head>
 <body onload="headerModification()">
-<% include header %>
+    <div class="header">
+        <nav>
+            <ul id="navList">
+                <li><span>EvictionLand</span></li>
+                <li><a href="/admin/home">Home</a></li>
+                <li><a href="/dashboard/state">Dashboard</a></li>
+                <li><a href="/rankings">Rankings</a></li>
+                <li><a href="/ourteam">Contact</a></li>
+                <li><a href="/users/logout">Logout</a></li>
+            </ul>
+        </nav>
+    </div>
 <div>
     <div class="message"><label><%=message %></label></div>
     <h2>Create new Eviction Record</h2>

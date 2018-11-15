@@ -44,12 +44,27 @@
     </script>
 </head>
 <body onload="headerModification()">
-<% include header %>
+    <div class="header">
+        <nav>
+            <ul id="navList">
+                <li><span>EvictionLand</span></li>
+                <li><a href="/admin/home">Home</a></li>
+                <li><a href="/dashboard/state">Dashboard</a></li>
+                <li><a href="/rankings">Rankings</a></li>
+                <li><a href="/ourteam">Contact</a></li>
+                <li><a href="/users/logout">Logout</a></li>
+            </ul>
+        </nav>
+    </div>
 <div>
     <div class="message"><label><%=message %></label></div>
     <h2>Eviction Record</h2>
 
-    <form name="evictionForm" action="" method="" onsubmit="return validateEvictionForm()">
+    <form name="evictionForm" action="/create/processUpdateEntry" method="post" onsubmit="return validateEvictionForm()">
+
+        Document Id:
+        <input type="text" name="id" value="<%=data["id"]%>">
+        <br>
         State:
         <input type="text" name="name" value="<%=data["name"]%>" <%if(update==false){%>disabled<%}%>>
         <label class="error" id="NameError"></label>
@@ -83,7 +98,7 @@
         <label class="error" id="RentBurdenError"></label>
         <br>
         <br>
-        <input type="button" value="Update" onclick="sendUpdateRequest()" <%if(update==false){%>hidden<%}%>>
+        <input type="submit" value="Update" onclick="sendUpdateRequest()" <%if(update==false){%>hidden<%}%>>
     </form>
 </div>
 <% include footer %>

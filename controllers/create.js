@@ -24,8 +24,6 @@ module.exports.showEntry = function (req, res) {
             update:false
         });
     });
-
-
 };
 
 
@@ -35,6 +33,9 @@ module.exports.updateEntry = function (req, res) {
     console.log(id);
 
     collection.findOne({_id:id}).then((doc) =>{
+
+        console.log("check Id: ", id);
+        doc.id = id;
         res.render('../views/showOrUpdateEntry', {
             message: "",
             error: "",
@@ -43,17 +44,23 @@ module.exports.updateEntry = function (req, res) {
             update:true
         });
     });
-
-
 };
 
 
-module.exports.processupdateEntry = function (req, res) {
+module.exports.processUpdateEntry = function (req, res) {
     const collection = db.get('USData');
-
     //Update the record
 
-
+        var newvalues = {$set: {year: req.body.year, population: req.body.population, "poverty-rate": req.body.povRate, "median-gross-rent": req.body.MedGrossRent, "median-household-income": req.body.MedHouseInc, "median-property-value": req.body.MedianPropValue, "rent-burden": req.body.RentBurden}};
+        collection.update({"_id": req.body.id}, newvalues).then((data) =>
+        {
+            res.render('../views/createRecord', {
+                message: "Record updated successfully",
+                error: "",
+                errorMsg: "",
+                update:true
+            });
+        });
 };
 
 module.exports.createNew = function(req, res){

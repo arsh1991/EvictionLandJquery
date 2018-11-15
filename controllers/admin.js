@@ -15,6 +15,12 @@ module.exports.home = function (req, res) {
     const cases = db.get('USData');
     cases.find().then((results) =>{
         console.log(typeof results[0]._id.toString());
+
+        //sort the data
+        results.sort(function(a, b) {
+            return a.name.localeCompare(b.name);
+        });
+
         res.render('../views/landing', {
         message: "",
         error: "",
