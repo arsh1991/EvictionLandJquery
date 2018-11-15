@@ -64,3 +64,28 @@ html {
 .errorDiv{
     margin-top: 20px;
 }
+
+.content {
+    width: 500px;
+    margin-left: 35%;
+    margin-top: 40px;
+}
+
+.inpField {
+    height: 30px;
+    width: 250px;
+}
+
+.lab {
+    font-size: 18px;
+    font-weight: 700;
+    margin-right: 20px;
+}
+
+.butt {
+    width: 100px;
+    height: 35px;
+    background-color: maroon;
+    font-size: 14px;
+    font-weight: 900px;
+}
