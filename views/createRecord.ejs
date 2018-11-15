@@ -20,45 +20,54 @@
         </nav>
     </div>
 <div>
-    <div class="message"><label><%=message %></label></div>
-    <h2>Create new Eviction Record</h2>
+    <div class="content">
+        <div class="message"><label><%=message %></label></div>
+        <h2>Create new Eviction Record</h2>
 
-    <form name="evictionForm" action="/create/new" method="post" onsubmit="return validateEvictionForm()">
-        State:
-        <input type="text" name="name" value="">
-        <label class="error" id="NameError"></label>
-        <br>
-        Year:
-        <input type="number" name="year" value="">
-        <label class="error" id="yearError"></label>
-        <br>
-        Population:
-        <input type="number" name="population" value="">
-        <label class="error" id="populationError"></label>
-        <br>
-        Poverty Rate:
-        <input type="number" name="povRate" value="">
-        <label class="error" id="povRateError"></label>
-        <br>
-        Median Gross Rent:
-        <input type="number" name="MedGrossRent" value="">
-        <label class="error" id="MedGrossRentError"></label>
-        <br>
-        Median Household Income:
-        <input type="text" name="MedHouseInc" value="">
-        <label class="error" id="MedHouseIncError"></label>
-        <br>
-        Median Property Value:
-        <input type="text" name="MedianPropValue" value="">
-        <label class="error" id="MedianPropError"></label>
-        <br>
-        Rent Burden:
-        <input type="text" name="RentBurden" value="">
-        <label class="error" id="RentBurdenError"></label>
-        <br>
-        <br>
-        <input type="submit" value="Submit">
-    </form>
+        <form name="evictionForm" action="/create/new" method="post" onsubmit="return validateEvictionForm()">
+            <span class="lab">State:</span>
+            <input type="text"  class="inpField" name="name" value="">
+            <label class="error" id="NameError"></label>
+            <br>
+            <br>
+            <span class="lab">Year:</span>
+            <input type="number" class="inpField" name="year" value="">
+            <label class="error" id="yearError"></label>
+            <br>
+            <br>
+            <span class="lab">Population:</span>
+            <input type="number" class="inpField" name="population" value="">
+            <label class="error" id="populationError"></label>
+            <br>
+            <br>
+            <span class="lab">Poverty Rate:</span>
+            <input type="number" class="inpField" name="povRate" value="">
+            <label class="error" id="povRateError"></label>
+            <br>
+            <br>
+            <span class="lab">Median Gross Rent:</span>
+            <input type="number" class="inpField" name="MedGrossRent" value="">
+            <label class="error" id="MedGrossRentError"></label>
+            <br>
+            <br>
+            <span class="lab">Median Household Income:</span>
+            <input type="text" class="inpField" name="MedHouseInc" value="">
+            <label class="error" id="MedHouseIncError"></label>
+            <br>
+            <br>
+            <span class="lab">Median Property Value:</span>
+            <input type="text" class="inpField" name="MedianPropValue" value="">
+            <label class="error" id="MedianPropError"></label>
+            <br>
+            <br>
+            <span class="lab">Rent Burden:</span>
+            <input type="text" class="inpField" name="RentBurden" value="">
+            <label class="error" id="RentBurdenError"></label>
+            <br>
+            <br>
+            <input type="submit" value="Submit" class="butt">
+        </form>
+    </div>
 </div>
 <% include footer %>
 </body>
